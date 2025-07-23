@@ -1,0 +1,13 @@
+requests
+markdownify
+tqdm
+torch
+accelerate
+bitsandbytes
+transformers
+bm25s
+mistralai
+openai
+google-generativeai
+cohere
+voyageai

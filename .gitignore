@@ -1,0 +1,4 @@
+/.setup
+/.venv/
+/dataset/documents
+__pycache__
