@@ -96,4 +96,4 @@ if __name__ == "__main__":
     except IndexError:
         documents_folder = "./dataset/documents"
     docs = DocumentSet(documents_folder)
-    generate_qa_data(10, "./dataset/qa/benchmark.jsonl", docs)
+    generate_qa_data(1000, "./dataset/qa/benchmark.jsonl", docs)
