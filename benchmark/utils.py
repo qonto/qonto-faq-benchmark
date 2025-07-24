@@ -11,19 +11,15 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 from dataset.jsonl import parse_jsonl
 
 
-def benchmark(relevant_documents: Callable[str, list[str]]) -> None:
+def benchmark(relevant_documents: Callable[str, list[str]], max_docs: int = 4) -> None:
     """
     Benchmark the dataset in ./dataset/qa/benchmark.jsonl.
     Prints out the result in stdout.
 
     relevant_documents: a function that takes a question (str) and returns a
         list of relevant documents (as a list of strings).
+    max_docs: we will benchmark using 1 document, 2, ... up to max_docs.
     """
-    n_bits = 0  # Information content of the assistants' responses in bits.
-    n_bits_docless = 0 # Baseline information content without relevant documents.
-    n_bytes = 0 # Number of bytes of the assistants' responses in UTF-8.
-    tokenizer, model = load_model()
-
     # `dataset/qa/benchmark.jsonl` contains lines of the form `{query, answer}`.
     # Let's read it record by record.
     validation_set = list(parse_jsonl("./dataset/qa/benchmark.jsonl"))
@@ -32,15 +28,25 @@ def benchmark(relevant_documents: Callable[str, list[str]]) -> None:
     relevant_docs = {}
     for data in tqdm(validation_set, desc="Fetching relevant documents"):
         query = data["query"]
-        relevant_docs[query] = relevant_documents(query)
+        relevant_docs[query] = relevant_documents(query, max_docs)
     torch.cuda.empty_cache()
+
+    for i in range(max_docs):
+        print(f"Benchmarking with {i + 1} relevant documents...")
+        benchmark_with_n_docs(validation_set, relevant_docs, i + 1)
+
+def benchmark_with_n_docs(validation_set: list[dict[str, Any]], relevant_docs: dict[str, list[str]], n_docs: int) -> None:
+    n_bits = 0  # Information content of the assistants' responses in bits.
+    n_bits_docless = 0 # Baseline information content without relevant documents.
+    n_bytes = 0 # Number of bytes of the assistants' responses in UTF-8.
+    tokenizer, model = load_model()
 
     # Compute the benchmark figure.
     for data in tqdm(validation_set, desc="Estimating question/answer compression ratio"):
         query = data["query"]
         answer = data["answer"]
 
-        docs = relevant_docs[query]
+        docs = relevant_docs[query][:n_docs]
         # Model the answer and get its compression ratio.
         tokens, logprobs = transformers_answer_probs(docs, query, answer, tokenizer, model)
         tokens_docless, logprobs_docless = transformers_answer_probs([], query, answer, tokenizer, model)

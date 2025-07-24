@@ -1,4 +1,6 @@
 /.setup
 /.venv/
 /dataset/documents
+/retriever/*/index.jsonl
+/retriever/bm25/index/
 __pycache__

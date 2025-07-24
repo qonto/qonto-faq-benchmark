@@ -6,9 +6,11 @@ from dataset.documents import DocumentSet
 from benchmark.utils import benchmark
 
 
-def relevant_documents_func(n_docs: int, dataset: DocumentSet, metadata: list[dict]) -> list[str]:
+def relevant_documents_func() -> callable:
     """Returns a function that takes a question and returns a list of relevant documents."""
-    def relevant_documents(question: str) -> list[str]:
+    dataset = DocumentSet("./dataset/documents")
+    metadata = list(dataset.read_metadata())
+    def relevant_documents(question: str, n_docs: int) -> list[str]:
         """Returns a list of relevant documents for the question."""
         # Fetch "relevant" documents.
         docs = random_sample(n_docs, metadata)
@@ -23,8 +25,4 @@ def random_sample(n_docs: int, metadata: list[dict]) -> list[dict]:
 
 
 if __name__ == "__main__":
-    dataset = DocumentSet("./dataset/documents")
-    metadata = list(dataset.read_metadata())
-    for i in range(4):
-        print(f"Benchmarking with {i + 1} relevant documents...")
-        benchmark(relevant_documents_func(i + 1, dataset, metadata))
+    benchmark(relevant_documents_func())

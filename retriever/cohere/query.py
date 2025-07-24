@@ -7,6 +7,7 @@
 # Format: list of documents `[{id, score, snippet}]`.
 
 import os
+import sys
 import json
 import argparse
 from typing import Any
@@ -43,11 +44,20 @@ def score_indexes(query: str, indexes: list[dict[str, Any]]) -> list[dict[str, A
 def embedding(texts: list[str]) -> list[list[float]]:
     """Takes a list of texts to index.
     Return a list of embeddings, one for each text."""
-    response = co.embed(
-        texts=texts,
-        model="embed-v4.0",
-        input_type="search_query"
-    )
+    try:
+        response = co.embed(
+            texts=texts,
+            model="embed-v4.0",
+            input_type="search_query"
+        )
+    except cohere.errors.too_many_requests_error.TooManyRequestsError as e:
+        print("Rate limit hit, waiting for 60 seconds before retrying...", file=sys.stderr)
+        time.sleep(60)
+        return embedding(texts)
+    except cohere.core.api_error.ApiError as e:
+        print(f"Error during embedding: {e}, retrying after 30 seconds...", file=sys.stderr)
+        time.sleep(30)
+        return embedding(texts)
     return response.embeddings
 
 

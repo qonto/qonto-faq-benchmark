@@ -1,4 +1,3 @@
-
 # Index the dataset/documents and output the index in stdout.
 #
 # python retriever/<approach>/index.py <documents> >index.jsonl

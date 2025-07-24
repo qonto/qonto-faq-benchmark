@@ -3,9 +3,10 @@ from retriever.voyageai.query import query as voyageai_query
 from benchmark.utils import benchmark
 
 
-def relevant_documents_func(n_docs: int, dataset: DocumentSet) -> list[str]:
+def relevant_documents_func() -> callable:
     """Returns a function that takes a question and returns a list of relevant documents."""
-    def relevant_documents(question: str) -> list[str]:
+    dataset = DocumentSet("./dataset/documents")
+    def relevant_documents(question: str, n_docs: int) -> list[str]:
         """Returns a list of relevant documents for the question."""
         # Fetch relevant documents.
         voyageai_index = "./retriever/voyageai/index.jsonl"
@@ -15,7 +16,4 @@ def relevant_documents_func(n_docs: int, dataset: DocumentSet) -> list[str]:
 
 
 if __name__ == "__main__":
-    dataset = DocumentSet("./dataset/documents")
-    for i in range(4):
-        print(f"Benchmarking with {i + 1} relevant documents...")
-        benchmark(relevant_documents_func(i + 1, dataset))
+    benchmark(relevant_documents_func(), 4)

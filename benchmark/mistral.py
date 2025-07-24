@@ -1,21 +1,19 @@
-from datset.documents import DocumentSet
+from dataset.documents import DocumentSet
 from retriever.mistral.query import query as mistral_query
 from benchmark.utils import benchmark
 
 
-def relevant_documents_func(n_docs: int, dataset: DocumentSet) -> list[str]:
+def relevant_documents_func() -> callable:
     """Returns a function that takes a question and returns a list of relevant documents."""
-    def relevant_documents(question: str) -> list[str]:
+    dataset = DocumentSet("./dataset/documents")
+    def relevant_documents(question: str, n_docs: int) -> list[str]:
         """Returns a list of relevant documents for the question."""
         # Fetch relevant documents.
-        mistral_embedding_index = "./retriever/mistral_embedding/index.jsonl"
-        docs = mistral_query(question, mistral_embedding_index, n_docs)
+        mistral_index = "./retriever/mistral/index.jsonl"
+        docs = mistral_query(question, mistral_index, n_docs)
         return [dataset.get(d['id']) for d in docs]
     return relevant_documents
 
 
 if __name__ == "__main__":
-    dataset = DocumentSet("./dataset/documents")
-    for i in range(4):
-        print(f"Benchmarking with {i + 1} relevant documents...")
-        benchmark(relevant_documents_func(i + 1, dataset))
+    benchmark(relevant_documents_func(), 4)

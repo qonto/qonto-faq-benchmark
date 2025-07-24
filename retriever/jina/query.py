@@ -41,18 +41,23 @@ def score_indexes(query: str, indexes: list[dict[str, Any]]) -> list[dict[str, A
 def embedding(texts: list[str]) -> list[list[float]]:
     """Takes a list of texts to index.
     Return a list of embeddings, one for each text."""
-    response = requests.post(
-        "https://api.jina.ai/v1/embeddings",
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {os.environ.get('JINA_API_KEY')}"
-        },
-        data=json.dumps({
-            "model": "jina-embeddings-v4",
-            "task": "text-matching",
-            "input": [{"text": text} for text in texts]
-        })
-    ).json()
+    try:
+        raw_response = requests.post(
+            "https://api.jina.ai/v1/embeddings",
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {os.environ.get('JINA_API_KEY')}"
+            },
+            data=json.dumps({
+                "model": "jina-embeddings-v4",
+                "task": "text-matching",
+                "input": [{"text": text} for text in texts]
+            })
+        )
+        response = raw_response.json()
+    except requests.exceptions.JSONDecodeError as e:
+        print(f"Error decoding JSON response: {e}\nBody: {response.text}", file=sys.stderr)
+        return []
     return [item['embedding'] for item in response['data']]
 
 
