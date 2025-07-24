@@ -20,7 +20,7 @@ mistral = Mistral(api_key=os.getenv("MISTRAL_API_KEY"))
 
 def index(docs: DocumentSet) -> None:
     docs_meta = docs.read_metadata()
-    batch_size = 4
+    batch_size = 16
     # Loop through batch_size lines at a time.
     for batch in tqdm(iter(lambda: list(islice(docs_meta, batch_size)), []), desc=f"Indexing documents in {documents_folder}"):
         index_doc_batch(batch, docs)
@@ -48,7 +48,11 @@ def embedding(texts: list[str]) -> list[list[float]]:
         resp = mistral.embeddings.create(model="mistral-embed", inputs=texts)
     except models.sdkerror.SDKError as e:
         if "Status 429" in str(e):
-            print(f"Rate limited. Retrying...")
+            print(f"Rate limited. Retrying...", file=sys.stderr)
+            time.sleep(1)
+            return embedding(texts)
+        if "Status 500" in str(e):
+            print(f"500 error. Retrying...", file=sys.stderr)
             time.sleep(1)
             return embedding(texts)
         else:

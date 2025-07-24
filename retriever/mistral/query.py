@@ -6,10 +6,11 @@
 # Format: list of documents `[{id, score, snippet}]`.
 
 import os
+import sys
 import json
 import argparse
 from typing import Any
-from mistralai import Mistral
+from mistralai import Mistral, models
 
 from dataset.jsonl import parse_jsonl
 
@@ -47,7 +48,11 @@ def embedding(texts: list[str]) -> list[list[float]]:
         resp = mistral.embeddings.create(model="mistral-embed", inputs=texts)
     except models.sdkerror.SDKError as e:
         if "Status 429" in str(e):
-            print(f"Rate limited. Retrying...")
+            print(f"Rate limited. Retrying...", file=sys.stderr)
+            time.sleep(1)
+            return embedding(texts)
+        if "Status 500" in str(e):
+            print(f"500 error. Retrying...", file=sys.stderr)
             time.sleep(1)
             return embedding(texts)
         else:
