@@ -44,72 +44,70 @@ retriever/jina/index.jsonl: dataset/documents
 	source ./.venv/bin/activate; \
 	python -m retriever.jina.index dataset/documents >retriever/jina/index.jsonl
 
-benchmark: benchmark/question_only benchmark/random benchmark/bm25 benchmark/mistral benchmark/openai benchmark/cohere benchmark/google benchmark/voyageai benchmark/qwen3 benchmark/jina
+benchmark: benchmark/question_only.json benchmark/random.json benchmark/bm25.json benchmark/mistral.json benchmark/openai.json benchmark/cohere.json benchmark/google.json benchmark/voyageai.json benchmark/qwen3.json benchmark/jina.json
 
-benchmark/question_only: dataset/qa
+benchmark/question_only.json: dataset/qa
 	mkdir -p benchmark
 	source ./.venv/bin/activate; \
-	python -m benchmark.question_only >benchmark/question_only
-	cat benchmark/question_only
+	python -m benchmark.question_only >benchmark/question_only.json
+	cat benchmark/question_only.json
 
-benchmark/random: dataset/qa
+benchmark/random.json: dataset/qa
 	mkdir -p benchmark
 	source ./.venv/bin/activate; \
-	python -m benchmark.random >benchmark/random
-	cat benchmark/random
+	python -m benchmark.random >benchmark/random.json
+	cat benchmark/random.json
 
-benchmark/bm25: retriever/bm25/index dataset/qa
+benchmark/bm25.json: retriever/bm25/index dataset/qa
 	mkdir -p benchmark
 	source ./.venv/bin/activate; \
-	python -m benchmark.bm25 >benchmark/bm25
-	cat benchmark/bm25
+	python -m benchmark.bm25 >benchmark/bm25.json
+	cat benchmark/bm25.json
 
-benchmark/mistral: retriever/mistral/index.jsonl dataset/qa
+benchmark/mistral.json: retriever/mistral/index.jsonl dataset/qa
 	mkdir -p benchmark
 	source ./.venv/bin/activate; \
-	python -m benchmark.mistral >benchmark/mistral
-	cat benchmark/mistral
+	python -m benchmark.mistral >benchmark/mistral.json
+	cat benchmark/mistral.json
 
-benchmark/openai: retriever/openai/index.jsonl dataset/qa
+benchmark/openai.json: retriever/openai/index.jsonl dataset/qa
 	mkdir -p benchmark
 	source ./.venv/bin/activate; \
-	python -m benchmark.openai >benchmark/openai
-	cat benchmark/openai
+	python -m benchmark.openai >benchmark/openai.json
+	cat benchmark/openai.json
 
-benchmark/google: retriever/google/index.jsonl dataset/qa
+benchmark/google.json: retriever/google/index.jsonl dataset/qa
 	mkdir -p benchmark
 	source ./.venv/bin/activate; \
-	python -m benchmark.google >benchmark/google
-	cat benchmark/google
+	python -m benchmark.google >benchmark/google.json
+	cat benchmark/google.json
 
-benchmark/cohere: retriever/cohere/index.jsonl dataset/qa
+benchmark/cohere.json: retriever/cohere/index.jsonl dataset/qa
 	mkdir -p benchmark
 	source ./.venv/bin/activate; \
-	python -m benchmark.cohere >benchmark/cohere
-	cat benchmark/cohere
+	python -m benchmark.cohere >benchmark/cohere.json
+	cat benchmark/cohere.json
 
-benchmark/voyageai: retriever/voyageai/index.jsonl dataset/qa
+benchmark/voyageai.json: retriever/voyageai/index.jsonl dataset/qa
 	mkdir -p benchmark
 	source ./.venv/bin/activate; \
-	python -m benchmark.voyageai >benchmark/voyageai
-	cat benchmark/voyageai
+	python -m benchmark.voyageai >benchmark/voyageai.json
+	cat benchmark/voyageai.json
 
-benchmark/qwen3: retriever/qwen3/index.jsonl dataset/qa
+benchmark/qwen3.json: retriever/qwen3/index.jsonl dataset/qa
 	mkdir -p benchmark
 	source ./.venv/bin/activate; \
-	python -m benchmark.qwen3 >benchmark/qwen3
-	cat benchmark/qwen3
+	python -m benchmark.qwen3 >benchmark/qwen3.json
+	cat benchmark/qwen3.json
 
-benchmark/jina: retriever/jina/index.jsonl dataset/qa
+benchmark/jina.json: retriever/jina/index.jsonl dataset/qa
 	mkdir -p benchmark
 	source ./.venv/bin/activate; \
-	python -m benchmark.jina >benchmark/jina
-	cat benchmark/jina
+	python -m benchmark.jina >benchmark/jina.json
+	cat benchmark/jina.json
 
 .setup:
 	python -m venv .venv
 	source ./.venv/bin/activate; \
 	pip install -r requirements.txt
 	touch .setup
-
-.PHONY: benchmark/question_only

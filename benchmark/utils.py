@@ -14,7 +14,17 @@ from dataset.jsonl import parse_jsonl
 def benchmark(relevant_documents: Callable[str, list[str]], max_docs: int = 4) -> None:
     """
     Benchmark the dataset in ./dataset/qa/benchmark.jsonl.
-    Prints out the result in stdout.
+    Prints out the result in stdout, as a JSON object
+    with the following structure:
+
+    {
+        "model": "model_name",
+        "measurements": [
+            {"top_k": 1, "information_assimilation": 0.85},
+            {"top_k": 2, "information_assimilation": 0.90},
+            ...
+        ]
+    }
 
     relevant_documents: a function that takes a question (str) and returns a
         list of relevant documents (as a list of strings).
@@ -31,37 +41,58 @@ def benchmark(relevant_documents: Callable[str, list[str]], max_docs: int = 4) -
         relevant_docs[query] = relevant_documents(query, max_docs)
     torch.cuda.empty_cache()
 
-    for i in range(max_docs):
-        print(f"Benchmarking with {i + 1} relevant documents...")
-        benchmark_with_n_docs(validation_set, relevant_docs, i + 1)
-
-def benchmark_with_n_docs(validation_set: list[dict[str, Any]], relevant_docs: dict[str, list[str]], n_docs: int) -> None:
-    n_bits = 0  # Information content of the assistants' responses in bits.
-    n_bits_docless = 0 # Baseline information content without relevant documents.
-    n_bytes = 0 # Number of bytes of the assistants' responses in UTF-8.
     tokenizer, model = load_model()
+    model_name = model.name_or_path
 
-    # Compute the benchmark figure.
-    for data in tqdm(validation_set, desc="Estimating question/answer compression ratio"):
+    # Pre-compute docless values.
+    n_bits_docless, n_bytes = answer_info_with_n_docs(
+        validation_set, relevant_docs, 0, tokenizer, model
+    )
+
+    compression_ratio_docless = n_bits_docless / (n_bytes * 8)
+
+    measurements = []
+    for i in range(max_docs):
+        n_docs = i + 1
+        n_bits, n_bytes = answer_info_with_n_docs(
+            validation_set, relevant_docs, n_docs, tokenizer, model
+        )
+        compression_ratio = n_bits / (n_bytes * 8)
+        score = 1 - (compression_ratio / compression_ratio_docless)
+        measurements.append({"top_k": n_docs, "information_assimilation": score})
+
+    result = {"model": model_name, "measurements": measurements}
+    print(json.dumps(result, indent=4))
+
+
+def answer_info_with_n_docs(
+    validation_set: list[dict[str, Any]],
+    relevant_docs: dict[str, list[str]],
+    n_docs: int,
+    tokenizer: AutoTokenizer,
+    model: AutoModelForCausalLM,
+) -> tuple[float, int]:
+    """
+    Computes the sum of bits and bytes for the answers in the validation set,
+    given n_docs relevant documents.
+    """
+    n_bits = 0
+    n_bytes = 0
+    desc = (
+        "Estimating baseline (doc-less) compression ratio"
+        if n_docs == 0
+        else f"Estimating compression ratio with {n_docs} docs"
+    )
+    for data in tqdm(validation_set, desc=desc):
         query = data["query"]
         answer = data["answer"]
-
         docs = relevant_docs[query][:n_docs]
-        # Model the answer and get its compression ratio.
         tokens, logprobs = transformers_answer_probs(docs, query, answer, tokenizer, model)
-        tokens_docless, logprobs_docless = transformers_answer_probs([], query, answer, tokenizer, model)
         qa_n_bits, qa_n_bytes = answer_compression(tokens, logprobs)
-        qa_n_bits_docless, _ = answer_compression(tokens_docless, logprobs_docless)
         n_bits += qa_n_bits
-        n_bits_docless += qa_n_bits_docless
         n_bytes += qa_n_bytes
-
         torch.cuda.empty_cache()
-
-    compression_ratio = n_bits / (n_bytes * 8)  # in bits per bit.
-    compression_ratio_docless = n_bits_docless / (n_bytes * 8)
-    score = 100 * (1 - compression_ratio / compression_ratio_docless)
-    print(f"Answer information assimilation: {score:.2f}%")
+    return n_bits, n_bytes
 
 
 def load_model() -> tuple[AutoTokenizer, AutoModelForCausalLM]:

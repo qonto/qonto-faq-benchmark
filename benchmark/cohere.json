@@ -1,0 +1,21 @@
+{
+    "model": "cohere",
+    "measurements": [
+        {
+            "top_k": 1,
+            "information_assimilation": 0.3469
+        },
+        {
+            "top_k": 2,
+            "information_assimilation": 0.3784
+        },
+        {
+            "top_k": 3,
+            "information_assimilation": 0.3871
+        },
+        {
+            "top_k": 4,
+            "information_assimilation": 0.39159999999999995
+        }
+    ]
+}

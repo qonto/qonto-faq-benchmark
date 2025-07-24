@@ -1,0 +1,9 @@
+{
+    "model": "question_only",
+    "measurements": [
+        {
+            "top_k": 1,
+            "information_assimilation": 0.0
+        }
+    ]
+}

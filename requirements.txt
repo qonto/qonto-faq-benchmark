@@ -11,3 +11,6 @@ openai
 google-genai
 cohere
 voyageai
+pandas
+seaborn
+matplotlib

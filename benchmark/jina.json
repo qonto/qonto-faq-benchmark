@@ -1,0 +1,21 @@
+{
+    "model": "jina",
+    "measurements": [
+        {
+            "top_k": 1,
+            "information_assimilation": 0.2827
+        },
+        {
+            "top_k": 2,
+            "information_assimilation": 0.31629999999999997
+        },
+        {
+            "top_k": 3,
+            "information_assimilation": 0.324
+        },
+        {
+            "top_k": 4,
+            "information_assimilation": 0.33159999999999995
+        }
+    ]
+}
