@@ -13,7 +13,7 @@ import sys
 from typing import Any
 from google import genai
 from google.genai import types
-from google.genai.errors import ClientError
+from google.genai.errors import ClientError, ServerError
 
 from dataset.jsonl import parse_jsonl
 
@@ -48,13 +48,17 @@ def embedding(texts: list[str]) -> list[list[float]]:
     Return a list of embeddings, one for each text."""
     try:
         result = google_client.models.embed_content(
-            model="text-embedding-004",
+            model="gemini-embedding-001",
             contents=texts,
             config=types.EmbedContentConfig(task_type="RETRIEVAL_QUERY"),
         )
         return [e.values for e in result.embeddings]
     except ClientError:
         print("Rate limit hit, waiting for 60 seconds before retrying...", file=sys.stderr)
+        time.sleep(60)
+        return embedding(texts)
+    except ServerError:
+        print("Server error hit, waiting for 60 seconds before retrying...", file=sys.stderr)
         time.sleep(60)
         return embedding(texts)
 
