@@ -15,4 +15,4 @@ def relevant_documents_func() -> callable:
     return relevant_documents
 
 if __name__ == "__main__":
-    benchmark(relevant_documents_func(), 4)
+    benchmark(relevant_documents_func(), "BM25", 4)

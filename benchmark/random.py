@@ -25,4 +25,4 @@ def random_sample(n_docs: int, metadata: list[dict]) -> list[dict]:
 
 
 if __name__ == "__main__":
-    benchmark(relevant_documents_func())
+    benchmark(relevant_documents_func(), "Random", 4)

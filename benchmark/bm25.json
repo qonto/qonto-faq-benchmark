@@ -1,5 +1,5 @@
 {
-    "model": "bm25",
+    "model": "BM25",
     "measurements": [
         {
             "top_k": 1,

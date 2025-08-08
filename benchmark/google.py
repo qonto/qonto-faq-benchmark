@@ -16,4 +16,4 @@ def relevant_documents_func() -> callable:
 
 
 if __name__ == "__main__":
-    benchmark(relevant_documents_func(), 4)
+    benchmark(relevant_documents_func(), "Google gemini-embedding-001", 4)

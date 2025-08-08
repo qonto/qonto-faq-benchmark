@@ -1,5 +1,5 @@
 {
-    "model": "random",
+    "model": "Random",
     "measurements": [
         {
             "top_k": 1,

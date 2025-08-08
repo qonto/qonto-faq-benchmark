@@ -1,5 +1,5 @@
 {
-    "model": "qwen3",
+    "model": "Qwen 3 Embedding 8B",
     "measurements": [
         {
             "top_k": 1,

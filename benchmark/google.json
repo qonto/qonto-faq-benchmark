@@ -1,21 +1,21 @@
 {
-    "model": "google",
+    "model": "Google gemini-embedding-001",
     "measurements": [
         {
             "top_k": 1,
-            "information_assimilation": 0.3494
+            "information_assimilation": 0.36459624084770137
         },
         {
             "top_k": 2,
-            "information_assimilation": 0.3847
+            "information_assimilation": 0.38961720474254213
         },
         {
             "top_k": 3,
-            "information_assimilation": 0.3901
+            "information_assimilation": 0.396180892107586
         },
         {
             "top_k": 4,
-            "information_assimilation": 0.3931
+            "information_assimilation": 0.4039052530564935
         }
     ]
 }

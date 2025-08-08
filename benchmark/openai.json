@@ -1,5 +1,5 @@
 {
-    "model": "openai",
+    "model": "OpenAI text-embedding-3-large",
     "measurements": [
         {
             "top_k": 1,

@@ -11,7 +11,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 from dataset.jsonl import parse_jsonl
 
 
-def benchmark(relevant_documents: Callable[str, list[str]], max_docs: int = 4) -> None:
+def benchmark(relevant_documents: Callable[str, list[str]], model_name: str, max_docs: int = 4) -> None:
     """
     Benchmark the dataset in ./dataset/qa/benchmark.jsonl.
     Prints out the result in stdout, as a JSON object
@@ -42,7 +42,6 @@ def benchmark(relevant_documents: Callable[str, list[str]], max_docs: int = 4) -
     torch.cuda.empty_cache()
 
     tokenizer, model = load_model()
-    model_name = model.name_or_path
 
     # Pre-compute docless values.
     n_bits_docless, n_bytes = answer_info_with_n_docs(

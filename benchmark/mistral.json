@@ -1,5 +1,5 @@
 {
-    "model": "mistral",
+    "model": "Mistral Embeddings",
     "measurements": [
         {
             "top_k": 1,

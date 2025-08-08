@@ -16,4 +16,4 @@ def relevant_documents_func() -> callable:
 
 
 if __name__ == "__main__":
-    benchmark(relevant_documents_func(), 4)
+    benchmark(relevant_documents_func(), "Qwen 3 Embedding 8B", 4)
