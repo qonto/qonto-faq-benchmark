@@ -19,8 +19,7 @@ targeted at use-cases involving customer support chatbots using RAG pipelines.
   on all approaches,
   and output the comparative results in `benchmark/result.json`.
 - `make benchmark/<approach>` will run the benchmark on a given algorithm,
-  and output `benchmark/<approach>/result.json`,
-  along with `benchmark/<approach>/log.txt` for investigations.
+  and output `benchmark/<approach>.json`.
 - `python -m retriever.<approach>.index [documents] >index.jsonl`
   will index the dataset/documents and output the index in stdout.
   The documents must be a folder in the same format as dataset/documents.

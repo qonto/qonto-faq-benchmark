@@ -24,7 +24,7 @@ def create_plot():
                     all_data.append({
                         'model': model_name,
                         'top_k': measurement.get('top_k'),
-                        'information_assimilation': measurement.get('information_assimilation')
+                        'information_assimilation': 100 * measurement.get('information_assimilation')
                     })
 
     if not all_data:
