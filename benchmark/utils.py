@@ -96,15 +96,16 @@ def answer_info_with_n_docs(
 
 def load_model() -> tuple[AutoTokenizer, AutoModelForCausalLM]:
     torch_device = "cuda" if torch.cuda.is_available() else "cpu"
-    model_name = "meta-llama/Llama-3.2-1B-Instruct"
+    model_name = "google/gemma-3-270m-it"
+    # Other models we support:
+    #model_name = "meta-llama/Llama-3.2-1B-Instruct"
     #model_name = "HuggingFaceTB/SmolLM2-1.7B-Instruct"
-    # Out of memory w/ Refran on 24GB GPU:
     #model_name = "google/gemma-3-1b-it"
     #model_name = "google/gemma-3-4b-it"
     #model_name = "microsoft/Phi-4-mini-instruct"
     #model_name = "mistralai/Ministral-8B-Instruct-2410"
     tokenizer = AutoTokenizer.from_pretrained(model_name, device=torch_device)
-    model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.bfloat16, device_map='auto')
+    model = AutoModelForCausalLM.from_pretrained(model_name, dtype=torch.bfloat16, device_map='auto')
     model.eval()
     return tokenizer, model
 
