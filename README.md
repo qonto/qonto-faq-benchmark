@@ -3,6 +3,8 @@
 Benchmarking embedding models with a realistic dataset
 targeted at use-cases involving customer support chatbots using RAG pipelines.
 
+![Benchmark Results](benchmark/plot.svg)
+
 ## Commands
 
 - `make dataset/documents` will download the Qonto FAQ dataset
