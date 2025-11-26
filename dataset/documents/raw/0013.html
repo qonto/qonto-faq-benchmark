@@ -1,0 +1,62 @@
+<h3 id="h_01K0AAYK98YDXH4RGQHF5Y4VBY"><strong>Implémentation actuelle de Qonto</strong></h3><p>Nous traitons actuellement la TVA dans les factures d'acompte et de solde comme suit :</p><p><strong>Facture d'acompte :</strong></p><ul>
+<li>Total hors taxe : 100 €</li>
+<li>TVA (20%) : 20 €</li>
+<li>Total TTC : 120 €</li>
+</ul><p><strong>Facture de solde :</strong></p><ul>
+<li>Total hors taxe : 1 000 €</li>
+<li>TVA (20%) : 200 €</li>
+<li><strong>Total TTC : 1 200 €</strong></li>
+<li>Acompte (déduit après TVA) : 120 €</li>
+<li><strong>Montant dû : 1 080 €</strong></li>
+</ul><p> </p><h3 id="h_01K0AAYDYA5XQMT7P1XFRJ0MAP"><strong>Quels problèmes cela crée-t-il pour ma comptabilité ?</strong></h3><p><strong>Impact comptable :</strong> Notre méthode actuelle peut créer des problèmes dans les systèmes comptables comme Regate, où la TVA semble être facturée deux fois (une fois sur l'acompte, une fois sur le solde), nécessitant des corrections manuelles.</p><p><strong>Considérations de conformité :</strong> Bien que notre approche actuelle maintienne la valeur totale de la transaction pour la reconnaissance des revenus (ce qui est légalement requis), la méthode de calcul de la TVA cause des problèmes pratiques pour les comptables.</p><p> </p><h3 id="h_01K0AAYDYAG9Q1DVXWZYM88XFB"><strong>Qonto collecte-t-il trop de TVA auprès de mes clients ?</strong></h3><p>Bien qu'il soit vrai que davantage de TVA est initialement collectée, cela est <strong>automatiquement corrigé au niveau comptable</strong> :</p><ol>
+<li>
+<strong>Facture d'acompte :</strong> TVA collectée sur le montant de l'acompte</li>
+<li>
+<strong>Facture de solde :</strong> TVA collectée sur le montant total de la transaction</li>
+<li>
+<strong>Rôle de votre comptable :</strong> Déduit la TVA précédemment collectée de la TVA de la facture de solde</li>
+</ol><p> </p><h3 id="h_01K0AAYDYCW36ACW74CV299X83"><strong>Pouvez-vous me montrer un exemple de fonctionnement ?</strong></h3><p><strong>Exemple avec la méthode de Qonto :</strong></p><ul>
+<li>
+<strong>Acompte :</strong> 100 € + 10 € TVA = 110 €</li>
+<li>
+<strong>Total facture de solde :</strong> 1 000 € + 100 € TVA = 1 100 €</li>
+<li>
+<strong>Déduction de l'acompte :</strong> -110 € (après taxe)</li>
+<li>
+<strong>Montant dû :</strong> 990 €</li>
+<li>
+<strong>Correction de TVA :</strong> Votre comptable réduit la TVA collectée de 10 € (déjà collectée sur l'acompte)</li>
+</ul><p> </p><h3 id="h_01K0AAYDYEZ5DN4YFYMWVDDJ4R"><strong>Pourquoi cette collecte de TVA est-elle temporaire ?</strong></h3><p>La collecte plus élevée de TVA est temporaire car votre système comptable équilibrera automatiquement les montants. La TVA totale que vous collectez réellement sur les deux factures reste correcte - elle est simplement distribuée différemment entre les factures d'acompte et de solde.</p><p> </p><h3 id="h_01K0AAYDYE45AKYDQKPNE00G7T"><strong>Que fait Qonto pour résoudre ce problème ?</strong></h3><p>C'est un problème connu sur lequel nous travaillons activement. Le défi consiste à équilibrer :</p><ul>
+<li>Les exigences légales de conformité pour la reconnaissance des revenus</li>
+<li>Les besoins pratiques de comptabilité pour le traitement de la TVA</li>
+<li>L'intégration avec les systèmes comptables comme Regate</li>
+</ul><p>Nous développons une solution qui traitera le calcul de la TVA tout en maintenant la conformité avec les normes comptables françaises.</p><p> </p><h2 id="h_01K0AAYDYFZ9JS2ANZNQ4DAMEN"><strong>Pourquoi déduire l'acompte avant la taxe serait-il incorrect ?</strong></h2><h3 id="h_01K0AAYDYGKTGSQVPQ761KCEYK"><strong>Quels problèmes comptables cela créerait-il ?</strong></h3><p>Déduire l'acompte <strong>avant le calcul de la taxe</strong> créerait de sérieux problèmes :</p><p><strong>Méthode incorrecte (avant taxe) :</strong></p><ul>
+<li>Facture de solde : 900 € + 90 € TVA = 990 €</li>
+<li>
+<strong>Problème :</strong> La transaction apparaît comme 900 € au lieu de 1 000 €</li>
+<li>
+<strong>Résultat :</strong> Revenus sous-évalués et états financiers incorrects</li>
+</ul><p> </p><h3 id="h_01K0AAYDYH6B1YYN2TF8EWWBQE"><strong>Comment la méthode de Qonto maintient-elle votre comptabilité précise ?</strong></h3><p><strong>Méthode de Qonto (après taxe) :</strong></p><ul>
+<li>Facture de solde : 1 000 € + 100 € TVA - 110 € d'acompte = 990 €</li>
+<li>
+<strong>Résultat :</strong> Valeur réelle de la transaction (1 000 €) correctement enregistrée avec un traitement de TVA conforme</li>
+</ul><p>Cela garantit que vos revenus ne sont pas artificiellement réduits tout en maintenant la conformité légale avec les normes comptables françaises.</p><p> </p><h2 id="h_01K0AAYDYJXXV055NS1EEWX8QE"><strong>Pourquoi ma facture de solde doit-elle inclure la valeur complète du service ?</strong></h2><h3 id="h_01K0AAYDYJVTB6YD00VD63WVFT"><strong>Principe comptable - Reconnaissance des revenus</strong></h3><p>Les normes comptables françaises exigent que <strong>les factures d'acompte ne soient pas enregistrées comme revenus dans le bilan</strong>. Seule la <strong>facture de solde finale représente la transaction complète</strong> et est enregistrée dans les revenus de votre entreprise.</p><p><strong>Voici ce qui importe :</strong> Votre facture de solde doit inclure :</p><ul>
+<li><strong>Description complète du service/produit</strong></li>
+<li><strong>Valeur totale de la transaction (avant déduction de l'acompte)</strong></li>
+<li><strong>Calcul complet de la TVA sur l'ensemble de la transaction</strong></li>
+</ul><p><strong>Pourquoi c'est important :</strong> Si votre facture de solde ne montrait que le montant restant sans la valeur totale de la transaction, cela <strong>réduirait artificiellement les revenus enregistrés de votre entreprise</strong>, créant des états financiers incorrects.</p><p> </p><h2 id="h_01K0AAYDYMV8NK35BE3XQYQCTE"><strong>La législation française sur la TVA soutient-elle l'approche de Qonto ?</strong></h2><h3 id="h_01K0AAYDYME1VXY8NHF9APY3VC"><strong>Que dit la législation fiscale française concernant la TVA sur les acomptes ?</strong></h3><p>Le code fiscal français <strong>exige que la TVA soit facturée sur tous les acomptes</strong> pour les services. Depuis le 1er janvier 2023, la TVA devient exigible dès <strong>réception du paiement de l'acompte</strong> pour les biens et les services.</p><p> </p><h3 id="h_01K0AAYDYN22G3H0DY7C8A2FQC"><strong>Quel est le point crucial pour mon entreprise ?</strong></h3><p>La TVA sur les acomptes est <strong>immédiatement récupérable par votre client</strong> s'il est assujetti à la TVA, créant un effet neutre sur la trésorerie pour les transactions B2B.</p><p>L'article 289 du Code Général des Impôts (CGI) rend la TVA sur les acomptes obligatoire, ce qui signifie :</p><ul>
+<li>Vous devez facturer la TVA lorsque vous recevez un paiement d'acompte</li>
+<li>Cette TVA devient exigible immédiatement à la réception du paiement</li>
+<li>Vos clients assujettis à la TVA peuvent récupérer cette TVA, équilibrant leur trésorerie</li>
+<li>Cette exigence légale soutient notre approche actuelle du calcul de la TVA</li>
+</ul><p> </p><h2 id="h_01K0AAYDYPE4SXBFEK673DCGWP"><strong>Comment les Experts Comptables gèrent-ils les factures d'acompte ?</strong></h2><p>Les professionnels de la comptabilité française appliquent systématiquement cette méthode car :</p><ol>
+<li>
+<strong>Les factures d'acompte ne génèrent pas d'écritures de revenus</strong> - seulement des écritures de trésorerie</li>
+<li>
+<strong>Les factures de solde doivent montrer la valeur complète de la transaction</strong> pour un reporting financier précis</li>
+<li><strong>Les corrections de TVA se font lors des déclarations mensuelles/trimestrielles de TVA</strong></li>
+</ol><p> </p><h2 id="h_01K0AAYDYQJXSJ5W87V6FYS2BV"><strong>Comment cela s'aligne-t-il avec les directives européennes sur la TVA ?</strong></h2><p>Les changements de TVA en France en 2023 se sont alignés sur les <strong>exigences de la directive TVA de l'UE</strong>, assurant une cohérence entre les États membres. Cette approche est <strong>standard dans les systèmes comptables européens</strong>.</p><p>La méthode consistant à :</p><ul>
+<li>Facturer la TVA sur les acomptes</li>
+<li>Déduire les acomptes après le calcul de la taxe</li>
+<li>Corriger la TVA au niveau de la déclaration</li>
+</ul><p>Cela garantit que vos pratiques de facturation sont non seulement conformes en France, mais aussi cohérentes avec les normes européennes, vous donnant confiance lorsque vous travaillez avec des clients internationaux ou que vous vous développez sur les marchés de l'UE.</p>

@@ -1,0 +1,152 @@
+<ul>
+<li class="no-margin">EBICS via <a href="https://support-fr.qonto.com/hc/en-us/articles/23947626584593">JeDéclare</a> is available from Smart plan and above.</li>
+<li class="no-margin">Other ERP integration using EBICS are available from <a href="https://support-fr.qonto.com/hc/en-us/articles/28479048690705">the Account Payable add-on</a>.</li>
+</ul>
+<p class="no-margin">Thanks to the EBICS connection, you can now integrate Qonto with your favourite accounting and treasury tools. With this connection, you can:</p>
+<ol>
+<li>
+<p class="no-margin"><strong>Retrieve your Qonto bank statements automatically in your accounting or treasury software.</strong> You will receive bank statements for each IBAN associated with your Qonto account.</p>
+</li>
+<li>
+<p class="no-margin"><strong>Initiate payments from your accounting or treasury software, in Qonto.</strong> You can maintain the payment validation workflows already set up in your ERP, and send payments once they’ve been approved to Qonto. Payments can be sent individually, or in bulk. As added security, an Owner, Admin or Advanced Manager* with transfer permissions activated, on your account, will still need to log into Qonto to approve the payment. <br><em>* Advanced Manager is available with the <a href="https://support-fr.qonto.com/hc/en-us/articles/28479048690705">Accounts Payable and  Expense &amp; Spend managements add-ons</a>.</em></p>
+</li>
+</ol>
+<p class="no-margin">For more information on what EBICS is, and how you can use them, read this article: <strong><a class="intercom-content-link" href="https://support-fr.qonto.com/hc/en-us/articles/23947674750481" target="_blank" rel="noopener noreferrer">Is it possible to set up an EBICS contract with Qonto</a>?</strong></p>
+<p class="no-margin"> </p>
+<p class="no-margin"><strong>What information isn’t transmitted between Qonto and my ERP or TMS?</strong></p>
+<p class="no-margin">The EBICS connection only transfers bank statements. It does not share the following data with your ERP or TMS:</p>
+<ul>
+<li>
+<p class="no-margin">Labels on transactions</p>
+</li>
+<li>
+<p class="no-margin">Documents needed for the Purchase Journal, such as receipts and invoices.</p>
+</li>
+</ul>
+<p class="no-margin">Learn more about how to export receipts <a class="intercom-content-link" href="https://support-fr.qonto.com/hc/en-us/articles/23947723221521" target="_blank" rel="noopener noreferrer">here</a>.</p>
+<p class="no-margin"> </p>
+<p class="no-margin"><strong>What roles on Qonto can use the EBICS connection?</strong> The EBICS connection can only be set up by any Owner, Admin, or Accountant on Qonto. If the connection is set up to initiate payments in Qonto, then any Manager with transfer permissions in Qonto will also be able to validate the request.</p>
+<p class="no-margin"> </p>
+<p class="no-margin"><strong>Using what devices?</strong> The integration can only be set up on desktop.</p>
+<p class="no-margin"> </p>
+<p class="no-margin"><strong>What file formats do you allow with your EBICS connection?</strong></p>
+<ul>
+<li>
+<p class="no-margin">V3.0</p>
+<ul>
+<li>
+<p class="no-margin">Bank statements in MT940</p>
+<ul>
+<li>
+<p class="no-margin">service name: EOP</p>
+</li>
+<li>
+<p class="no-margin">msg name: mt940</p>
+</li>
+</ul>
+</li>
+<li>
+<p class="no-margin">Bank statement in CFONB-120</p>
+<ul>
+<li>
+<p class="no-margin">service name: EOP</p>
+</li>
+<li>
+<p class="no-margin">msg name: cfonb120</p>
+</li>
+</ul>
+</li>
+<li>
+<p class="no-margin">SEPA transfers</p>
+<ul>
+<li>
+<p class="no-margin">service name: SCT</p>
+</li>
+<li>
+<p class="no-margin">msg name: pain.001</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p class="no-margin">V2.4</p>
+<ul>
+<li>
+<p class="no-margin">Bank statements in MT940</p>
+<ul>
+<li>
+<p class="no-margin">file format: camt.fin.mt940.stm</p>
+</li>
+</ul>
+</li>
+<li>
+<p class="no-margin">Bank statements in CFONB-120</p>
+<ul>
+<li>
+<p class="no-margin">file format: camt.xxx.cfonb120.stm</p>
+</li>
+</ul>
+</li>
+<li>
+<p class="no-margin">SEPA transfers</p>
+<ul>
+<li>
+<p class="no-margin">file formats: pain.001.001.02.SCT or pain.001.001.03.sct</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="no-margin"><strong>What are the steps to complete the EBICS setup?</strong></p>
+<ul>
+<li>
+<p class="no-margin">Log into your account, and head to the <strong>Connect</strong> section.</p>
+</li>
+<li>
+<p class="no-margin">Search for the tool with which you want to set up an EBICS connection.</p>
+</li>
+<li>
+<p class="no-margin">Click <strong>Connect</strong> at the top right of the page, and Finish to begin the configuration process.</p>
+</li>
+<li>
+<p class="no-margin">Within 24h, you’ll receive a <strong>Notice of Configuration</strong> from Qonto, via email. This letter contains all the information you’ll need to configure your EBICS connection with Qonto in your ERP/TMS.</p>
+</li>
+<li>
+<p class="no-margin">Using the information in the letter, log into your ERP/TMS and configure your EBICS connection. Follow the steps listed, and generate three certificates: Authentification, Encryption, and Signature. If you don’t know how to generate these certificates, contact the integrator you work with from your ERP or TMS. If you don’t have an integrator, you can find a list of integrators with whom we partner on the listing page in Connect.</p>
+</li>
+<li>
+<p class="no-margin">Send these certificates back to Qonto by responding to the email you received with the Letter of Configuration, and attaching them. Note: We will not be able to proceed with the EBICS configuration without these certificates.</p>
+</li>
+<li>
+<p class="no-margin">Once received, we’ll validate the certificates sent, and email you a confirmation of validation. This email will contain the hashes of our bank certificates, in case you need that to finalize the setup in your ERP/TMS.</p>
+</li>
+</ul>
+<p class="no-margin"><em>👆 You’re all set. You’ll be able to access your account statements and/or initiate payments in Qonto from</em> your ERP/TMS <em>within 24 hours of completing the final step.</em></p>
+<p class="no-margin"> </p>
+<p class="no-margin"><strong>I don’t see my ERP or TMS listed in Qonto Connect. What do I do?</strong></p>
+<p class="no-margin">If your tool isn’t listed, you can still set up an EBICS connection by using this <a class="intercom-content-link" href="https://app.qonto.com/detectapp.html?appUrl=deeplinks%3Faction%3Dqonto-hub.hub-application%26application_slug%3Debics" target="_blank" rel="noopener noreferrer">link</a> instead.</p>
+<p class="no-margin"> </p>
+<p class="no-margin"><strong>How can I disconnect my ERP from Qonto’s EBICS integration, and what happens then?</strong></p>
+<p class="no-margin"><strong>Disconnecting EBICS: </strong>There are a few way to disconnect the EBICS connection between your ERP and Qonto.</p>
+<ul>
+<li>
+<p class="no-margin"><strong>From Qonto’s Connect section</strong>, search for your ERP or treasury tool, and simply click “Disconnect.”</p>
+</li>
+<li>
+<p class="no-margin">Close the EBICS connection <strong>from your ERP or treasury tool</strong>.</p>
+</li>
+<li>
+<p class="no-margin">You can also disconnect your EBICS connection by <strong>downgrading your Qonto account</strong>. If you downgrade from the Enterprise plan to the Business plan, you will lose up to 2 EBICS connections. We will be in touch to determine which of the integrations you would like to maintain. If you downgrade from Business to any plan Essential or below, you will lose access to the one EBICS connection set up.</p>
+</li>
+</ul>
+<p class="no-margin"><strong>What happens after I have disconnected the EBICS integration?</strong></p>
+<ul>
+<li>
+<p class="no-margin">Your bank statements won't be created and sent to our EBICS server anymore. This implies they won't be automatically accessible in your ERP or treasury software. Additionally, you won't be able to initiate payments from your software within Qonto.</p>
+</li>
+<li>
+<p class="no-margin">If you wish to reconnect, you'll need to repeat the initial process. Visit Qonto's Connect section, locate your ERP or treasury tool, click "Connect," and follow the steps shown to set up the connection again.</p>
+</li>
+</ul>

@@ -1,0 +1,76 @@
+Qonto und DATEV Transaktionen synchronisieren mit FinAPI<br><p class="no-margin">Synchronisieren Sie Ihre Transaktionen zwischen DATEV Unternehmen Online und Ihrem Qonto Konto bequem und einfach mit unseren DATEV Schnittstellen.<br>​<br>In diesem Artikel erfahren Sie, wie Sie DATEV Unternehmen Online mit Qonto verbinden und Ihre Transaktionen mit dem PIN/TAN-Verfahren über FinAPI synchronisieren können.</p>
+<p class="no-margin"></p>
+<div class="intercom-interblocks-callout" style="background-color: #d7efdc80; border-color: #1bb15733;">
+<p class="no-margin">☝️ Die DATEV-Integrationen sind nur für Kunden mit deutscher IBAN bei Qonto verfügbar. <br>​<br>Um auch Ihre Anhänge zwischen Qonto und DATEV Unternehmen Online (DUO) zu synchronisieren, müssen Sie die DATEV Belegbilderservice-Integration einrichten. Wie Sie die DATEV-Belegbilderservice-Integration einrichten, erfahren Sie in <a href="https://support-de.qonto.com/hc/de/articles/23949214182545-Wie-synchronisiere-ich-Anh%C3%A4nge-mit-dem-DATEV-Belegbilderservice-und-Qonto" target="_blank" class="intercom-content-link">diesem Artikel</a>.</p>
+</div><p class="no-margin"></p>
+<h2 id="h_9a1010160a">Welche Voraussetzungen sind notwendig, um Ihr Qonto-Konto mit DATEV Unternehmen Online (DUO) zu verbinden?</h2>
+<ul>
+<li>
+<p class="no-margin">Sie oder Ihr/e Steuerberater:in haben DUO vollständig für Ihr Unternehmen eingerichtet.</p>
+</li>
+<li>
+<p class="no-margin">Für Ihre Anmeldung in DUO verfügen Sie über einen SmartLogin, SmartCard oder mIdentity.</p>
+</li>
+</ul><h2 id="h_3d3708f6d6">Wer kann diese DATEV-Integration nutzen?</h2>
+<ul>
+<li>
+<p class="no-margin">Alle Kontoinhaber, Administratoren und Buchhalter können die DATEV-Integrationen mit Qonto einrichten.</p>
+</li>
+<li>
+<p class="no-margin">Diese DATEV-Integration ist in allen Preisplänen verfügbar.</p>
+</li>
+</ul><p class="no-margin"></p>
+<h2 id="h_80a49ecc01">Wie richte ich Qonto mit DATEV DUO und FinAPI (PIN/TAN) ein? </h2>
+<p class="no-margin"><b>1. Geschäftskonto zu DUO hinzufügen</b></p>
+<ul>
+<li>
+<p class="no-margin">Loggen Sie sich in DUO unter <a href="http://duo.datev.de" target="_blank" class="intercom-content-link">duo.datev.de</a> ein.</p>
+</li>
+<li>
+<p class="no-margin">Gehen Sie im Bereich <b>Anwendungen</b> auf <b>Stammdaten.</b></p>
+</li>
+<li>
+<p class="no-margin">Klicken Sie nun auf der Menüleiste links auf <b>Unternehmensangaben.</b></p>
+</li>
+<li>
+<p class="no-margin">Gehen Sie im nächsten Fenster in den Reiter <b>Bank</b>.</p>
+</li>
+<li>
+<p class="no-margin">Klicken Sie nun im Feld <b>Bankkonten</b> auf + <b>Bankkonto hinzufügen.</b> Wenn Sie mehrere Qonto Konten (Unterkonten) führen, fügen Sie diese bitte einzeln hinzu.</p>
+</li>
+<li>
+<p class="no-margin">Geben Sie Ihre Qonto Kontoverbindung ein und klicken Sie auf <b>Hinzufügen.</b></p>
+</li>
+<li>
+<p class="no-margin">Wählen Sie weiter unten <b>Einstellungen Zahlungsverkehr</b> aus.</p>
+</li>
+<li>
+<p class="no-margin">Indem Sie auf <b>Neu / Hinzufügen</b> klicken, erstellen Sie einen HBCI-Zugang für die zuvor angelegte Kontoverbindung.</p>
+</li>
+<li>
+<p class="no-margin">Ein Fenster informiert Sie nun über den Drittanbieter finAPI, die die Banking-Schnittstelle zur Verfügung stellt. Klicken Sie auf <b>Weiter</b>.</p>
+</li>
+<li>
+<p class="no-margin">Wählen Sie nun die Schnittstelle <b>Access to Account (XS2A)</b> aus.</p>
+</li>
+</ul><p class="no-margin"><b>2. Schnittstellen-Verbindung zu Qonto herstellen</b></p>
+<ul>
+<li>
+<p class="no-margin">Im nächsten Fenster geben Sie Ihre Qonto IBAN sowohl im Feld <b>Anmeldedaten</b> als auch im Feld <b>Kontoreferenzen</b> an.</p>
+</li>
+<li>
+<p class="no-margin">Klicken Sie dann auf <b>Bankdaten abrufen</b>.</p>
+</li>
+</ul><p class="no-margin"><b>3. Qonto Transaktionen synchronisieren</b></p>
+<ul>
+<li>
+<p class="no-margin">Gehen Sie in die Anwendung <b>Stammdaten</b> und klicken Sie im Bereich <b>Stammdaten Online</b> auf <b>Unternehmensangaben</b>. Wählen Sie das gewünschte Konto aus. Im Feld <b>Einstellungen</b> gehen Sie in den Abschnitt <b>Umsatzabholung</b> und klicken auf <b>Übernehmen</b>.</p>
+</li>
+<li>
+<p class="no-margin">Unter der Anwendung <b>Bank</b> gelangen Sie zu <b>Startseite Bank.</b> Starten Sie nun die Synchronisierung. Im Feld <b>Bankkonto</b> klicken Sie auf den Aktualisieren-Button (zwei grüne Pfeile). Nun werden Ihre Daten auf DUO übertragen.</p>
+</li>
+<li>
+<p class="no-margin">Wählen Sie <b>Kontoumsätze prüfen</b>, um die “Auftraggeber-Bankverbindung” und den “Benutzer” noch einmal zu überprüfen. Klicken Sie schließlich auf <b>Kontoumsätze holen</b>.</p>
+</li>
+</ul><p class="no-margin">Ihre Transaktionsdaten wurden nun erfolgreich synchronisiert und Sie können sie in Ihrer DATEV-Anwendung einsehen.<br>​</p>
+<p class="no-margin">Sie haben Fragen zur Verknüpfung Ihres Kontos mit DATEV oder zur Synchronisierung Ihrer Kontoumsätze? DATEV Unternehmen online bietet technischen Support und stellt Ihnen weitere Informationen im <a href="https://www.datev.de/web/de/mydatev/online-anwendungen/datev-unternehmen-online/hilfe-portal/" target="_blank" class="intercom-content-link">DATEV Hilfe-Portal</a> zur Verfügung.</p>

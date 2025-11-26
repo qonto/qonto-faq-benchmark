@@ -1,0 +1,52 @@
+<p class="no-margin">Approfondisci l'analisi delle tue transazioni passate e gestisci le tue finanze nel modo che preferisci: le informazioni sulle transazioni vengono caricate automaticamente su Google Sheets. Hai bisogno di aiuto per gestire il file di Google Sheets in cui vengono esportate le transazioni di Qonto? Lascia che questo articolo ti guidi passo dopo passo.</p>
+<p class="no-margin"> </p>
+<h2 id="h_4854853819">Come utilizzare i dati esportati in Google Sheets?</h2>
+<p class="no-margin">Per poter utilizzare l'esportazione delle transazioni di Qonto in Google Sheets, dovrai modificare la data delle transazioni in quanto non è ancora utilizzabile in Google Sheets. Tieni presente che non puoi modificare direttamente il file: <strong>Sync. Transactions - Do not edit</strong> perché è protetta contro le modifiche accidentali. Se modifichi questa scheda, la connessione verrà interrotta e le transazioni non verranno più importate automaticamente.</p>
+<p class="no-margin"> </p>
+<h2 id="h_21c9e54ef1">Fase 1: Duplica le tue transazioni in un altro foglio di calcolo</h2>
+<ol>
+<li>
+<p class="no-margin">Accedi al tuo account Google Drive e apri il file di Google Sheets che hai creato quando hai installato l'integrazione. Per ritrovare il file più velocemente puoi inserire *type:spreadsheet "Qonto Connect -”*nella barra di ricerca di Google Drive.</p>
+</li>
+<li>
+<p class="no-margin">Crea un nuovo foglio di calcolo cliccando su <strong>+</strong> in basso a sinistra dello schermo, poi clicca sulla cella <strong>A1</strong> e inserisci <strong>=(importange</strong></p>
+</li>
+<li>
+<p class="no-margin">Aggiungi l'URL del tuo foglio di calcolo tra due virgolette, esempio: “<a class="intercom-content-link" href="https://docs.google.com/spreadsheets/d/1MKHm5QIeLVivSDv9jWBaIeUkc/edit?usp=sharing%E2%80%9D" target="_blank" rel="noopener noreferrer">https://docs.google.com/spreadsheets/d/1MKHm5QIeLVivSDv9jWBaIeUkc/edit?usp=sharing”</a></p>
+</li>
+<li>
+<p class="no-margin">Nella stessa formula, aggiungi una virgola e incolla: <strong>"'Sync. transactions - Do not edit'!A:AZ”</strong> poi clicca su <strong>Invio</strong>.</p>
+</li>
+<li>
+<p class="no-margin">Le tue transazioni importate da Qonto sono ora duplicate in un altro foglio di lavoro.</p>
+</li>
+</ol>
+<p class="no-margin">⚠️ Bene a sapersi: Non modificare le colonne in cui i dati sono importati dalla funzione <strong>=importrange</strong> perché questo interromperà la sincronizzazione delle transazioni di Qonto. Vedi <a class="intercom-content-link" href="https://support.google.com/docs/answer/3093340?hl=en" target="_blank" rel="noopener noreferrer">questo articolo</a> dedicato per maggiori informazioni sulla funzione <strong>=importrange</strong>.</p>
+<p><strong>Per configurare il tuo foglio modificabile, ecco una guida rapida:</strong></p>
+<ol>
+<li>
+<strong>Copia tutto</strong>: Usa <code>Cmd + A</code> (su Mac) o <code>Ctrl + A</code> (su Windows) per selezionare tutto il contenuto del tuo foglio corrente.</li>
+<li>
+<strong>Crea un nuovo foglio</strong>: Apri un nuovo foglio e incolla il contenuto usando <code>Cmd + V</code> (su Mac) o <code>Ctrl + V</code> (su Windows). Questo metodo copia tutto tranne la formula "importrange", assicurando che il tuo nuovo foglio funzioni senza problemi e senza link interrotti!</li>
+</ol>
+<p class="undefined"><!-- notionvc: 14cede1b-81ea-4c0f-a366-0a390d76555f --></p>
+<h2 id="h_ad4eb7e9f5">Fase 2: Modifica automaticamente la data delle tue transazioni</h2>
+<ol>
+<li>
+<p class="no-margin">Nel foglio di calcolo appena creato, clicca sulla prima cella vuota all'estrema destra dello schermo nella riga 1 e inserisci la formula <strong>=ARRAYFORMULA(split(F2:F," "))</strong> dove la colonna <strong>F</strong> corrisponde alla colonna <strong>settlement_date_local</strong>.</p>
+</li>
+<li>
+<p class="no-margin">Poi, clicca sulla prima cella vuota all'estrema destra dello schermo, nella riga 1, e inserisci <strong>=ARRAYFORMULA(RIMPIAZZA(AI2:AI,3,1,"/"))</strong> sostituendo <strong>AI2</strong> e <strong>AI</strong> con le coordinate della cella che hai usato per compilare la formula precedente (<strong>AI2</strong> e <strong>AI</strong> nell'esempio seguente).</p>
+</li>
+<li>
+<p class="no-margin">Poi, clicca sulla prima cella vuota all'estrema destra dello schermo nella riga 1 e inserisci <strong>=ARRAYFORMULA(RIMPIAZZA(AJ2:AJ,6,1,"/"))</strong> sostituendo <strong>AJ2</strong> et <strong>AJ</strong> con le coordinate della cella che hai usato per compilare la formula precedente (<strong>AK2</strong> e <strong>AK</strong> nell'esempio qui sotto).</p>
+</li>
+<li>
+<p class="no-margin">Infine, clicca sulla prima cella vuota all'estrema destra dello schermo nella riga 1 e inserisci <strong>=ARRAYFORMULA(DESTRA(AK2:AK, LUNGHEZZA(AK2:AK)-3))</strong> sostituendo <strong>AK2</strong> e <strong>AK</strong> con le coordinate della cella che hai usato per compilare la formula precedente (<strong>AL2</strong> e <strong>AL</strong> nell'esempio qui sotto).</p>
+</li>
+<li>
+<p class="no-margin">Ora puoi utilizzare i dati contenuti in questo foglio per costruire tutti i grafici e i cruscotti di cui hai bisogno per monitorare la tua attività.</p>
+</li>
+</ol>
+<div class="intercom-container"><img src="https://support-it.qonto.com/hc/article_attachments/23950207613841"></div>
+<p class="no-margin">👉 Bene a sapersi: Per poter creare filtri personalizzati nella tua dashboard Qonto, ti consigliamo di lasciare diverse colonne vuote tra la prima cella vuota all'estrema destra dello schermo e le manipolazioni al punto 2.</p>

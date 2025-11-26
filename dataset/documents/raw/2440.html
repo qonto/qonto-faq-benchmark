@@ -1,0 +1,182 @@
+<p class="no-margin">El contenido de un archivo exportado en CVS extendido es complejo y puede resultar difícil de interpretar.</p>
+<p class="no-margin"></p>
+<p class="no-margin">Estos son los diferentes campos que aparecen en un archivo CVS de exportación extendido, junto con su explicación correspondiente.</p>
+<p class="no-margin"></p>
+<div class="intercom-interblocks-table-container"><table><tbody>
+<tr>
+<td>
+<p class="no-margin">Nombre del campo</p>
+</td>
+<td>
+<p class="no-margin"></p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Estado</code></pre>
+</td>
+<td>
+<p class="no-margin">El <b>estátus</b> de tu transacción. Puede aparecer como <i>pendiente </i>(processing) o <i>completada </i>(settled).</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>ID de la transacción</code></pre>
+</td>
+<td>
+<p class="no-margin">La <b>referencia propia </b>a esa transacción en concreto.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Fecha valor (UTC)</code></pre>
+</td>
+<td>
+<p class="no-margin"><b>La fecha y la hora de la realización del pago</b>, según el UTC (tiempo universal coordinado).</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Fecha valor (local)</code></pre>
+</td>
+<td>
+<p class="no-margin"><b>La fecha y la hora de la realización del pago, </b>según la zona horaria que el usuario ha definido en <i>ajustes.</i></p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Fecha de la operación (UTC)</code></pre>
+</td>
+<td>
+<p class="no-margin"><b>La fecha y la hora de la realización del débito en tu cuenta,</b> según el UTC (tiempo universal coordinado). Este campo estará vacío en las transacciones que aún se estén procesando (<i>processing).</i></p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Fecha de la operación (local)</code></pre>
+</td>
+<td>
+<p class="no-margin"><b>La fecha y la hora de la realización del débito en tu cuenta,</b> según la zona horaria que el usuario ha definido en <i>ajustes.</i> Este campo estará vacío en las transacciones que aún se estén procesando (<i>processing).</i></p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Nombre de la contraparte</code></pre>
+</td>
+<td>
+<p class="no-margin">El nombre de la contrapartida. En los pagos con tarjeta, corresponde al nombre del comerciante.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Método de pago</code></pre>
+</td>
+<td>
+<p class="no-margin">El método de pago usado para efectuar la transacción. Puede ser un pago con<b> tarjeta, transferencia, cheque, una tarifa de suscripción o un adeudo directo.</b></p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Iniciador</code></pre>
+</td>
+<td>
+<p class="no-margin"><b>El emisor de la transacción.</b> Si es un pago, corresponderá al titular de la tarjeta. Si no, corresponderá la persona que haya efectuado la transferencia o la solicitud de transferencia. Este campo estará vacío en las transferencias entrantes y en los adeudos directos.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code> Categoria</code></pre>
+</td>
+<td>
+<p class="no-margin">La <b>categoría</b> atribuida a esa transacción.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Referencia</code></pre>
+</td>
+<td>
+<p class="no-margin">La <b>referencia </b>de una transferencia saliente o entrante. Este campo estará vacío en otros tipos de transacciones.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Nota</code></pre>
+</td>
+<td>
+<p class="no-margin">La <b>nota interna </b>que se añade a la transacción.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Importe total (IVA incluido)</code></pre>
+</td>
+<td>
+<p class="no-margin">La <b>suma </b>que corresponde a la transacción en cuestión.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Divisa (local)</code></pre>
+</td>
+<td>
+<p class="no-margin">La <b>divisa correspondiente </b>a esa suma. Qonto solo ofrece cuentas en euros, por lo que este valor será siempre "EUR"</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Importe total (IVA incluido) (local)</code></pre>
+</td>
+<td>
+<p class="no-margin">El <b>importe original </b>de la transacción en la divisa de origen. Para los pagos en euros, esta divisa será "EUR".</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Divisa (local)</code></pre>
+</td>
+<td>
+<p class="no-margin">La <b>divisa original</b> correspondiente a esta transacción.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Importe total del IVA</code></pre>
+</td>
+<td>
+<p class="no-margin">El importe correspondiente al<b> IVA</b>, en EUR</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Justificante</code></pre>
+</td>
+<td>
+<p class="no-margin">Los <b>nombres de los documentos justificantes </b>asociados a la transacción, para poder encontrarlos fácilmente en la exportación de documentos adjuntos.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Etiqueta personalizada 1</code></pre>
+</td>
+<td>
+<p class="no-margin">El nombre atribuido a tu etiqueta personalizada n° 1. Este campo estará vacío si todavía no lo has ajustado o personalizado.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Etiqueta personalizada 2</code></pre>
+</td>
+<td>
+<p class="no-margin">El nombre atribuido a tu etiqueta personalizada n° 2. Este campo estará vacío si todavía no lo has ajustado o personalizado.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Etiqueta personalizada 3</code></pre>
+</td>
+<td>
+<p class="no-margin">El nombre atribuido a tu etiqueta personalizada n° 3. Este campo estará vacío si todavía no lo has ajustado o personalizado.</p>
+</td>
+</tr>
+</tbody></table></div>

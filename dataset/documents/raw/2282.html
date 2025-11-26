@@ -1,0 +1,17 @@
+<p class="no-margin">Sí, hay dos maneras de establecer un contrato EBICS con Qonto:</p>
+<ul>
+<li>
+<p class="no-margin">Si utilizas recursos externos para gestionar tu contabilidad (es decir, un contable) puedes conectarte a jedeclare.com a través de l'Electronic Banking Internet Communication Standard (EBICS). La integración Jedéclare permitirá a tu contable recuperar los extractos Qonto directamente en su herramienta de producción contable preferida.</p>
+<p class="no-margin"> </p>
+</li>
+<li>
+<p class="no-margin">Si has internalizado tu contabilidad (es decir: tienes un DAF, titular financiero o contable interno) puedes conectar Qonto a otras herramientas de contabilidad y tesorería a través del protocolo EBICS T.</p>
+</li>
+</ul>
+<p class="no-margin"> </p>
+<p class="no-margin"> </p>
+<h3 id="h_e408054b0e"><strong>¿Qué es EBICS T frente a EBICS TS?</strong></h3>
+<p class="no-margin">Existen dos tipos de EBICS que puede configurar: T y TS.</p>
+<p class="no-margin"><strong>EBICS T (Transporte)</strong> permite el intercambio de ficheros entre empresas y entidades sin firma. Con este tipo, el ordenante del pago transfiere el archivo de pago a través de EBICS y los valida a través de otro canal (por ejemplo: una notificación in-app). <strong>Este es el protocolo EBICS soportado por Qonto.</strong> Para garantizar la seguridad, requerimos que un usuario inicie sesión en Qonto para aprobar un pago.</p>
+<p class="no-margin"> </p>
+<p class="no-margin"><strong>EBICS TS (Transporte y Firma)</strong> requiere que firmes digitalmente una orden de pago antes de enviarla a una entidad. Tradicionalmente, esto requiere una 3SKey para completarse: una llave USB física que se inserta en el ordenador del aprobador para validar la orden de pago antes de enviarla a la entidad. <strong>Qonto no admite este protocolo EBICS.</strong></p>

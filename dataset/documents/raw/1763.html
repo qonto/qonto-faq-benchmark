@@ -1,0 +1,182 @@
+<p class="no-margin">Il contenuto di un file esportato in formato CSV potrebbe essere difficile da leggere.</p>
+<p class="no-margin"></p>
+<p class="no-margin">Ecco i campi che troverai in un file export in formato CSV e come utilizzarli.</p>
+<p class="no-margin"></p>
+<div class="intercom-interblocks-table-container"><table><tbody>
+<tr>
+<td>
+<p class="no-margin">Nome del campo</p>
+</td>
+<td>
+<p class="no-margin">A cosa corrisponde questo dato?</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Status</code></pre>
+</td>
+<td>
+<p class="no-margin">Lo<b> stato</b> della tua transazione. I valori possono essere “in corso” o “eseguita”.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Transaction ID</code></pre>
+</td>
+<td>
+<p class="no-margin">Si tratta del <b>numero di riferimento della transazione</b> (TRN - Transaction Reference number).</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Operation date (UTC)</code></pre>
+</td>
+<td>
+<p class="no-margin">Si tratta della <b>data e dell’ora</b> in cui è stata effettuata l’operazione, in base al fuso orario di riferimento (UTC).</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Operation date (local)</code></pre>
+</td>
+<td>
+<p class="no-margin">Si tratta della <b>data e dell’ora</b> in cui è stata effettuata l’operazione, in base al fuso orario definito dall’utente nelle sue impostazioni.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Operation date (UTC)</code></pre>
+</td>
+<td>
+<p class="no-margin">Si tratta della <b>data e dell’ora</b> in cui l'operazione è stata effettivamente eseguita sul tuo conto, in base al fuso orario UTC. Questo campo è vuoto per le transazioni il cui stato è “in corso”.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Operation date (local)</code></pre>
+</td>
+<td>
+<p class="no-margin">Si tratta della<b> data e dell’ora</b> in cui l'operazione è stata effettivamente eseguita sul tuo conto, in base al fuso orario definito nelle impostazioni. Questo campo è vuoto per le transazioni il cui stato è “in corso”.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Counterparty name</code></pre>
+</td>
+<td>
+<p class="no-margin">Il <b>nome della controparte</b>. Nel caso di pagamenti con carta, si tratta ad esempio del nome dell’esercente.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Payment method</code></pre>
+</td>
+<td>
+<p class="no-margin">Il <b>metodo di pagamento</b> utilizzato per la transazione. Può trattarsi di un pagamento con carta, di un bonifico, del canone del conto o di un addebito diretto.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Initiator</code></pre>
+</td>
+<td>
+<p class="no-margin">L’<b>esecutore della transazione</b>. Nel caso di un pagamento, si tratta del titolare della carta. Oppure, della persona che ha eseguito il bonifico o ha effettuato la richiesta di bonifico. Questo campo è vuoto per i bonifici in entrata e gli addebiti diretti.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Category</code></pre>
+</td>
+<td>
+<p class="no-margin">La <b>categoria</b> attribuita a questa transazione.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Reference</code></pre>
+</td>
+<td>
+<p class="no-margin">La <b>motivazione</b> di un bonifico in entrata o in uscita. Questo campo è vuoto per altre tipologie di transazione.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Note</code></pre>
+</td>
+<td>
+<p class="no-margin">La<b> nota interna</b> associata alla transazione.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Total amount (incl. VAT)</code></pre>
+</td>
+<td>
+<p class="no-margin">L’<b>importo </b>corrispondente a questa transazione.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Currency</code></pre>
+</td>
+<td>
+<p class="no-margin">La <b>valuta corrispondente</b> a questa transazione. Qonto propone solo conti in Euro quindi questo valore è sempre ‘EUR’.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Total amount (incl. VAT)(local)</code></pre>
+</td>
+<td>
+<p class="no-margin">L’<b>importo originario</b> della transazione, nella valuta originaria. Per i pagamenti in Euro, questa valuta è sempre EUR.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Currency (local)</code></pre>
+</td>
+<td>
+<p class="no-margin">La<b> valuta originaria</b> corrispondente a questa transazione.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Total VAT amount</code></pre>
+</td>
+<td>
+<p class="no-margin">L’<b>importo dell’IVA</b>, in EUR.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Attachment</code></pre>
+</td>
+<td>
+<p class="no-margin">I <b>nomi dei giustificativi</b> associati a questa transazione per ritrovarli facilmente tra gli allegati esportati.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>custom_label_1</code></pre>
+</td>
+<td>
+<p class="no-margin">Il nome attribuito al tuo tag personalizzato n°1. Questo campo è vuoto se non l’hai ancora impostato o personalizzato.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>custom_label_2</code></pre>
+</td>
+<td>
+<p class="no-margin">Il nome attribuito al tuo tag personalizzato n°2. Questo campo è vuoto se non l’hai ancora impostato o personalizzato.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>custom_label_3</code></pre>
+</td>
+<td>
+<p class="no-margin">Il nome attribuito al tuo tag personalizzato n°3. Questo campo è vuoto se non l’hai ancora impostato o personalizzato.</p>
+</td>
+</tr>
+</tbody></table></div><p class="no-margin"></p>

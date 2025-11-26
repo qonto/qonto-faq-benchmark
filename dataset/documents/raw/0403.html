@@ -1,0 +1,62 @@
+<h3 id="h_01K0AAYK98YDXH4RGQHF5Y4VBY"><strong>Current Qonto Implementation</strong></h3><p>We currently handle VAT in deposit and balance invoices as follows:</p><p><strong>Deposit Invoice:</strong></p><ul>
+<li>Total before tax: €100</li>
+<li>VAT (20%): €20</li>
+<li>Total after tax: €120</li>
+</ul><p><strong>Balance Invoice:</strong></p><ul>
+<li>Total before tax: €1,000</li>
+<li>VAT (20%): €200</li>
+<li><strong>Total after VAT: €1,200</strong></li>
+<li>Deposit (deducted after VAT): €120</li>
+<li><strong>Amount due: €1,080</strong></li>
+</ul><p> </p><h3 id="h_01K0AAYDYA5XQMT7P1XFRJ0MAP"><strong>What problems does this create for my accounting?</strong></h3><p><strong>Accounting Impact:</strong> Our current method can create issues in accounting systems like Regate, where VAT appears to be charged twice (once on the deposit, once on the balance), requiring manual corrections.</p><p><strong>Compliance Considerations:</strong> While our current approach maintains the full transaction value for revenue recognition (which is legally required), the VAT calculation method is causing practical problems for accountants.</p><p> </p><h3 id="h_01K0AAYDYAG9Q1DVXWZYM88XFB"><strong>Is Qonto collecting too much VAT from my customers?</strong></h3><p>While it's true that more VAT is initially collected, this is <strong>automatically corrected at the accounting level</strong>:</p><ol>
+<li>
+<strong>Deposit Invoice:</strong> VAT collected on deposit amount</li>
+<li>
+<strong>Balance Invoice:</strong> VAT collected on full transaction amount</li>
+<li>
+<strong>Your Accountant's Role:</strong> Deducts previously collected VAT from the balance invoice VAT</li>
+</ol><p> </p><h3 id="h_01K0AAYDYCW36ACW74CV299X83"><strong>Can you show me an example of how this works?</strong></h3><p><strong>Example with Qonto's Method:</strong></p><ul>
+<li>
+<strong>Deposit:</strong> €100 + €10 VAT = €110</li>
+<li>
+<strong>Balance Invoice Total:</strong> €1,000 + €100 VAT = €1,100</li>
+<li>
+<strong>Deposit Deduction:</strong> -€110 (after tax)</li>
+<li>
+<strong>Amount Due:</strong> €990</li>
+<li>
+<strong>VAT Correction:</strong> Your accountant reduces VAT collected by €10 (already collected on deposit)</li>
+</ul><p> </p><h3 id="h_01K0AAYDYEZ5DN4YFYMWVDDJ4R"><strong>Why is this VAT collection temporary?</strong></h3><p>The higher VAT collection is temporary because your accounting system will automatically balance the amounts. The total VAT you actually collect across both invoices remains correct - it's just distributed differently between the deposit and balance invoices.</p><p> </p><h3 id="h_01K0AAYDYE45AKYDQKPNE00G7T"><strong>What is Qonto doing to fix this issue?</strong></h3><p>This is a known issue that we're actively working to resolve. The challenge is balancing:</p><ul>
+<li>Legal compliance requirements for revenue recognition</li>
+<li>Practical accounting needs for VAT handling</li>
+<li>Integration with accounting systems like Regate</li>
+</ul><p>We're developing a solution that will address the VAT calculation while maintaining compliance with French accounting standards.</p><p> </p><h2 id="h_01K0AAYDYFZ9JS2ANZNQ4DAMEN"><strong>Why would deducting the deposit before tax be incorrect?</strong></h2><h3 id="h_01K0AAYDYGKTGSQVPQ761KCEYK"><strong>What accounting problems would this create?</strong></h3><p>Deducting the deposit <strong>before tax calculation</strong> would create serious issues:</p><p><strong>Incorrect Method (Before Tax):</strong></p><ul>
+<li>Balance Invoice: €900 + €90 VAT = €990</li>
+<li>
+<strong>Problem:</strong> Transaction appears as €900 instead of €1,000</li>
+<li>
+<strong>Result:</strong> Understated revenue and incorrect financial statements</li>
+</ul><p> </p><h3 id="h_01K0AAYDYH6B1YYN2TF8EWWBQE"><strong>How does Qonto's method keep your accounting accurate?</strong></h3><p><strong>Qonto's Method (After Tax):</strong></p><ul>
+<li>Balance Invoice: €1,000 + €100 VAT - €110 deposit = €990</li>
+<li>
+<strong>Result:</strong> True transaction value (€1,000) properly recorded with compliant VAT treatment</li>
+</ul><p>This ensures your revenue isn't artificially reduced while maintaining legal compliance with French accounting standards.</p><p> </p><h2 id="h_01K0AAYDYJXXV055NS1EEWX8QE"><strong>Why must my balance invoice include the complete service value?</strong></h2><h3 id="h_01K0AAYDYJVTB6YD00VD63WVFT"><strong>Accounting Principle - Revenue Recognition</strong></h3><p>French accounting standards require that <strong>deposit invoices are not recorded as revenue in the balance sheet</strong>. Only the <strong>final balance invoice represents the complete transaction</strong> and is recorded in your company's revenue.</p><p><strong>Here's what matters:</strong> Your balance invoice must include:</p><ul>
+<li><strong>Complete service/product description</strong></li>
+<li><strong>Total transaction value (before deposit deduction)</strong></li>
+<li><strong>Full VAT calculation on the entire transaction</strong></li>
+</ul><p><strong>Why this is important:</strong> If your balance invoice only showed the remaining amount without the full transaction value, it would <strong>artificially reduce your company's recorded revenue</strong>, creating incorrect financial statements.</p><p> </p><h2 id="h_01K0AAYDYMV8NK35BE3XQYQCTE"><strong>Does French VAT law support Qonto's approach?</strong></h2><h3 id="h_01K0AAYDYME1VXY8NHF9APY3VC"><strong>What does French tax law say about VAT on deposits?</strong></h3><p>French tax code <strong>requires VAT to be charged on all deposits</strong> for services. Since January 1, 2023, VAT becomes due upon <strong>receipt of the deposit payment</strong> for both goods and services.</p><p> </p><h3 id="h_01K0AAYDYN22G3H0DY7C8A2FQC"><strong>What's the critical point for my business?</strong></h3><p>The VAT on deposits is <strong>immediately recoverable by your client</strong> if they are VAT-registered, creating a neutral cash flow effect for B2B transactions.</p><p>Article 289 of the French Tax Code (CGI) makes VAT on deposits mandatory, which means:</p><ul>
+<li>You must charge VAT when you receive a deposit payment</li>
+<li>This VAT becomes due immediately upon payment receipt</li>
+<li>Your VAT-registered clients can recover this VAT, balancing their cash flow</li>
+<li>This legal requirement supports our current approach to VAT calculation</li>
+</ul><p> </p><h2 id="h_01K0AAYDYPE4SXBFEK673DCGWP"><strong>How do Expert Comptables handle deposit invoices?</strong></h2><p>French accounting professionals consistently apply this method because:</p><ol>
+<li>
+<strong>Deposit invoices don't generate revenue entries</strong> - only cash flow entries</li>
+<li>
+<strong>Balance invoices must show complete transaction value</strong> for accurate financial reporting</li>
+<li><strong>VAT corrections happen during monthly/quarterly VAT declarations</strong></li>
+</ol><p> </p><h2 id="h_01K0AAYDYQJXSJ5W87V6FYS2BV"><strong>How does this align with EU VAT directives?</strong></h2><p>France's 2023 VAT changes aligned with <strong>EU VAT Directive requirements</strong>, ensuring consistency across member states. This approach is <strong>standard across European accounting systems</strong>.</p><p>The method of:</p><ul>
+<li>Charging VAT on deposits</li>
+<li>Deducting deposits after tax calculation</li>
+<li>Correcting VAT at declaration level</li>
+</ul><p>This ensures your invoicing practices are not only compliant in France, but also consistent with European standards, giving you confidence when working with international clients or expanding across EU markets.</p>

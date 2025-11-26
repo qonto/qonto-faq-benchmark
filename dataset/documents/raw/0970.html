@@ -1,0 +1,48 @@
+<p class="no-margin">Analysieren Sie Ihre bisherigen Transaktionen noch genauer und steuern Sie Ihre Finanzen nach Ihren Wünschen: Die Informationen zu Ihren Transaktionen werden automatisch in Google Sheets eingepflegt. Benötigen Sie Unterstützung bei der Arbeit mit der Google Sheets-Datei, in die Ihre Qonto-Transaktionen exportiert werden? Dieser Artikel gibt Ihnen eine entsprechende Anleitung Schritt für Schritt.</p>
+<p class="no-margin"> </p>
+<h2 id="h_1137c82ae3">Wie kann ich die in Google Sheets exportierten Daten verwenden?</h2>
+<p class="no-margin">Um Ihre in Google Sheets exportierten Qonto-Transaktionen nutzen zu können, müssen Sie das Datum Ihrer Transaktionen ändern, da es in Google Sheets noch nicht verwertbar ist. Beachten Sie, dass Sie die Registerkarte: <strong>Sync. Transactions - Do not edit</strong> nicht direkt bearbeiten können, da sie vor versehentlichen Änderungen geschützt ist. Wenn Sie diese Registerkarte ändern, wird die Verbindung unterbrochen und Ihre Transaktionen werden nicht mehr automatisch importiert.</p>
+<p class="no-margin"> </p>
+<h2 id="h_56afc59601">Schritt 1: Duplizieren Sie Ihre Transaktionen in ein anderes Arbeitsblatt.</h2>
+<ol>
+<li>
+<p class="no-margin">Melden Sie sich in Ihrem Google Drive-Konto an und öffnen Sie die Google Sheets-Datei, die Sie bei der Installation der Integration erstellt haben. Um die Datei schneller zu finden, können Sie <strong>type:spreadsheet "Qonto Connect - "</strong> in Ihre Google Drive-Suchleiste eingeben.</p>
+</li>
+<li>
+<p class="no-margin">Erstellen Sie ein neues Arbeitsblatt, indem Sie auf <strong>+</strong> in der linken unteren Ecke Ihres Bildschirms klicken, dann auf die Zelle <strong>A1</strong> klicken und <strong>=(importange</strong> eingeben.</p>
+</li>
+<li>
+<p class="no-margin">Fügen Sie die URL Ihres Arbeitsblatts in Anführungszeichen, hinzu, zum Beispiel: “https://docs.google.com/spreadsheets/d/1MxS5VlRem5QIeLVivSDv9jWBaIeUkc/edit?usp=sharing”</p>
+</li>
+<li>
+<p class="no-margin">Setzen Sie in derselben Formel ein Komma hinzu und fügen Sie Folgendes ein: <strong>"'Sync. transactions - Do not edit'!A:AZ”</strong>, bevor Sie auf <strong>Enter</strong> drücken.</p>
+</li>
+<li>
+<p class="no-margin">Ihre aus Qonto importierten Transaktionen werden nun in einem anderen Arbeitsblatt dupliziert.</p>
+</li>
+</ol>
+<p class="no-margin">⚠️ Gut zu wissen: Bearbeiten Sie keine Spalten, in die Daten mit der Funktion <strong>=importrange</strong> importiert werden, da dies die Synchronisierung Ihrer Qonto-Transaktionen stoppen würde. Lesen Sie dazu <a class="intercom-content-link" href="https://support.google.com/docs/answer/3093340?hl=en" target="_blank" rel="noopener noreferrer">diesen Artikel</a>, der Ihnen weitere, spezifische Informationen zur Funktion <strong>=importrange</strong> liefert.</p>
+<p>Hier eine kurze Einleitung zum Einrichten der Sheets:</p>
+<p>1. <strong>Alles kopieren</strong>: Verwenden Sie `Cmd + A` (Mac) oder `Ctrl + A` (Windows) um den gesamten Inhalt des aktuellen Sheets auszuwählen.<br>2. <strong>Einen neuen Sheet erstellen</strong>: Öffnen Sie einen neuen Sheet und fügen Sie den Inhalt mit `Cmd + V` (Mac) oder `Ctrl + V` (Windows) zu. Diese Methode kopiert alles außer der "importrange" Formel, und stellt sicher, dass Ihren neuen Sheet reibungslos und ohne fehlerhafte Links funktioniert!</p>
+<p class="no-margin"> </p>
+<p class="no-margin"> </p>
+<h2 id="h_3f1e4f4712">Schritt 2: Ändern Sie automatisch das Datum Ihrer Transaktionen.</h2>
+<ol>
+<li>
+<p class="no-margin">Klicken Sie in dem soeben erstellten Arbeitsblatt in Zeile 1 auf die erste leere Zelle ganz rechts auf Ihrem Bildschirm und geben Sie die Formel <strong>=ARRAYFORMULA(split(F2:F," "))</strong> ein, oder die Spalte <strong>F</strong> entspricht der Spalte <strong>settlement_date_local</strong>.</p>
+</li>
+<li>
+<p class="no-margin">Klicken Sie dann auf die erste leere Zelle ganz rechts auf Ihrem Bildschirm in Zeile 1 und geben Sie <strong>=ARRAYFORMULA(ERSETZEN(AI2:AI,3,1,"/"))</strong> ein, wobei Sie <strong>AI2</strong> und <strong>AI</strong> durch die Koordinaten der Zelle ersetzen, die Sie zum Ausfüllen der vorherigen Formel verwendet haben (<strong>AI2</strong> und <strong>AI</strong> im folgenden Beispiel).</p>
+</li>
+<li>
+<p class="no-margin">Klicken Sie dann auf die erste leere Zelle ganz rechts auf Ihrem Bildschirm in Zeile 1 und geben Sie <strong>=ARRAYFORMULA(ERSETZEN(AJ2:AJ,6,1,"/"))</strong> ein, wobei Sie <strong>AJ2</strong> und <strong>AJ</strong> durch die Koordinaten der Zelle ersetzen, die Sie in der vorherigen Formel verwendet haben (<strong>AK2</strong> und <strong>AK</strong> im Beispiel unten).</p>
+</li>
+<li>
+<p class="no-margin">Klicken Sie schließlich auf die erste leere Zelle ganz rechts in Zeile 1 und geben Sie <strong>=ARRAYFORMULA(RECHTS(AK2:AK, LÄNGE(AK2:AK)-3))</strong> ein, wobei Sie <strong>AK2</strong> und <strong>AK</strong> durch die Koordinaten der Zelle ersetzen, die Sie in der vorherigen Formel verwendet haben (<strong>AL2</strong> und <strong>AL</strong> im Beispiel unten).</p>
+</li>
+<li>
+<p class="no-margin">Jetzt können Sie die Daten in diesem Arbeitsblatt verwenden, um sämtliche Diagramme und Dashboards zu erstellen, die Sie benötigen, um Ihre Geschäftstätigkeit zu steuern.</p>
+</li>
+</ol>
+<div class="intercom-container"><img src="https://support-de.qonto.com/hc/article_attachments/23949480665105"></div>
+<p class="no-margin">👉 Gut zu wissen: Um eigene Filter in Ihrem Qonto-Dashboard erstellen zu können, empfehlen wir Ihnen, mehrere leere Spalten zwischen der ersten leeren Zelle ganz rechts auf Ihrem Bildschirm und den Bearbeitungen in Schritt 2 zu lassen.</p>

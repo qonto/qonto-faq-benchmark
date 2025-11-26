@@ -1,0 +1,185 @@
+<p class="no-margin">Ihre erweiterte CSV-Datei ist ziemlich umfangreich. Hier sind die Felder, die Sie darin finden, und wie sie Ihnen beim Export nützlich sein können.</p>
+<p class="no-margin"></p>
+<div class="intercom-interblocks-table-container"><table><tbody>
+<tr>
+<td>
+<p class="no-margin">Feld Name</p>
+</td>
+<td>
+<p class="no-margin">Welche Daten enthält dieses Feld?</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Status</code></pre>
+</td>
+<td>
+<p class="no-margin">Der Status Ihrer Transaktion. Er kann die Werte <b>bearbeitet </b>oder <b>abgewickelt </b>enthalten.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Transaction ID</code></pre>
+</td>
+<td>
+<p class="no-margin">Die<b> eindeutige Referenz</b> Ihrer Transaktion.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Operation date (UTC)</code></pre>
+</td>
+<td>
+<p class="no-margin">Das <b>Datum und die Uhrzeit</b>, <b>zu der die Zahlung erfolgt ist</b>, entsprechend der UTC-Zeitzone.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code> Operation date (local)</code></pre>
+</td>
+<td>
+<p class="no-margin">Das <b>Datum und die Uhrzeit, zu der die Zahlung stattgefunden hat</b>, entsprechend der Zeitzone Ihres Benutzers, die Sie in Ihren Einstellungen festgelegt haben.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Settlement date (UTC)</code></pre>
+</td>
+<td>
+<p class="no-margin">Das Datum, an dem sich die Transaktion auf den Saldo Ihres Kontos ausgewirkt hat, entsprechend der UTC-Zeitzone. Bei <b>Transaktionen in Bearbeitung</b> ist dieses Feld leer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Settlement date (local)</code></pre>
+</td>
+<td>
+<p class="no-margin">Das Datum, an dem sich die Transaktion auf den abgerechneten Saldo Ihres Kontos ausgewirkt hat, entsprechend der Zeitzone Ihres Benutzers, die Sie in Ihren Einstellungen festgelegt haben. Bei <b>Transaktionen</b> <b>in Bearbeitung</b> ist dieses Feld leer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Counterparty name</code></pre>
+</td>
+<td>
+<p class="no-margin">Der Name des Zahlungspartners. Bei einer Kartenzahlung ist dies der Name des Händlers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Payment method</code></pre>
+</td>
+<td>
+<p class="no-margin">Die für die Durchführung der Transaktion verwendete Zahlungsmethode. Es kann sich um eine <b>Karte</b>, <b>Überweisung</b>, <b>Abo_Gebühren</b>, <b>Lastschrift</b> oder einen <b>Scheck</b> handeln.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Initiator</code></pre>
+</td>
+<td>
+<p class="no-margin">Der Initiator der Transaktion. Das ist der Karteninhaber der für die Zahlung verwendeten Karte oder die Person, die die Überweisung veranlasst oder beantragt hat. Bei eingehenden Überweisungen und Lastschriften ist diese Angabe leer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="no-margin"></p>
+<pre><code> Category</code></pre>
+</td>
+<td>
+<p class="no-margin">Die der Transaktion zugewiesene <b>Kategorie</b>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="no-margin"></p>
+<pre><code>Reference</code></pre>
+</td>
+<td>
+<p class="no-margin">Die <b>Referenz</b> einer ausgehenden oder eingehenden Überweisung. Bei anderen Transaktionsmethoden ist dieses Feld leer.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Note</code></pre>
+</td>
+<td>
+<p class="no-margin">Die <b>interne Notiz</b>, die der Transaktion beigefügt </p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="no-margin"></p>
+<pre><code>Total amount (incl. VAT)</code></pre>
+</td>
+<td>
+<p class="no-margin">Der <b>Betrag der Transaktion.</b></p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="no-margin"></p>
+<pre><code>Currency</code></pre>
+</td>
+<td>
+<p class="no-margin">Die <b>Währung</b> des Betrags. Qonto bietet nur EUR-Zahlungskonten an, daher ist dieser Wert immer EUR.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="no-margin"></p>
+<pre><code>Total amount (incl. VAT) (local)</code></pre>
+</td>
+<td>
+<p class="no-margin">Der Betrag der Transaktion in der ursprünglichen Währung, in der die Zahlung erfolgt ist. Bei einer Zahlung in EUR ist der Wert identisch mit dem <b>Betrag</b>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Currency (local)</code></pre>
+</td>
+<td>
+<p class="no-margin">Die <b>ursprüngliche Währung</b>, in der die Zahlung erfolgt ist. (z. B.: USD)</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Total VAT amount</code></pre>
+</td>
+<td>
+<p class="no-margin">Betrag der <b>MwSt.</b>, in EUR</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Attachment</code></pre>
+</td>
+<td>
+<p class="no-margin">Die <b>Namen der Dateien</b>, die an die Transaktion angehängt sind, so dass Sie sie in Ihrem Export von Anhängen leicht finden können.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Custom_label_1</code></pre>
+</td>
+<td>
+<p class="no-margin">Der Name dieses Feldes variiert je nach der von Ihnen definierten benutzerdefinierten Bezeichnung. Es ist leer, es sei denn, Sie haben ein Etikett für diese Transaktion angegeben.</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code>Custom_label_2</code></pre>
+</td>
+<td>
+<p class="no-margin">Dasselbe wie bei custom_label_1</p>
+</td>
+</tr>
+<tr>
+<td>
+<pre><code> Custom_label_3</code></pre>
+</td>
+<td>
+<p class="no-margin">Dasselbe wie bei custom_label_1</p>
+</td>
+</tr>
+</tbody></table></div><p class="no-margin"></p>
