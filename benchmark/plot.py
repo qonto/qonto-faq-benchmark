@@ -82,6 +82,7 @@ def color_for_model(model):
         'OpenAI': '#5ea3c4',
         'Google': '#ea4335',
         'Voyage': '#819640',
+        'Gemma': '#a142f4',
     }
     for key in colors:
         if key in model:

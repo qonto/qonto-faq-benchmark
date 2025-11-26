@@ -1,0 +1,21 @@
+{
+    "model": "Google Embedding Gemma 300M",
+    "measurements": [
+        {
+            "top_k": 1,
+            "information_assimilation": 0.3201387623195969
+        },
+        {
+            "top_k": 2,
+            "information_assimilation": 0.339177755451219
+        },
+        {
+            "top_k": 3,
+            "information_assimilation": 0.34702789636889875
+        },
+        {
+            "top_k": 4,
+            "information_assimilation": 0.3512498122849145
+        }
+    ]
+}

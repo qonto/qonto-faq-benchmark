@@ -14,3 +14,4 @@ voyageai
 pandas
 seaborn
 matplotlib
+sentence-transformers

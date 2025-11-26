@@ -71,7 +71,10 @@ retriever/jina/index.jsonl: dataset/documents
 	source ./.venv/bin/activate; \
 	python -m retriever.jina.index dataset/documents >retriever/jina/index.jsonl
 
-benchmark: benchmark/question_only.json benchmark/random.json benchmark/bm25.json benchmark/mistral.json benchmark/openai.json benchmark/cohere.json benchmark/google.json benchmark/voyageai.json benchmark/qwen3.json benchmark/jina.json
+retriever/embeddinggemma/index.jsonl: dataset/documents
+	@echo "Building EmbeddingGemma index..."
+	source ./.venv/bin/activate; \
+	python -m retriever.embeddinggemma.index dataset/documents >retriever/embeddinggemma/index.jsonl
 
 benchmark/question_only.json: dataset/qa
 	mkdir -p benchmark
@@ -132,6 +135,12 @@ benchmark/jina.json: retriever/jina/index.jsonl dataset/qa
 	source ./.venv/bin/activate; \
 	python -m benchmark.jina >benchmark/jina.json
 	cat benchmark/jina.json
+
+benchmark/embeddinggemma.json: retriever/embeddinggemma/index.jsonl dataset/qa
+	mkdir -p benchmark
+	source ./.venv/bin/activate; \
+	python -m benchmark.embeddinggemma >benchmark/embeddinggemma.json
+	cat benchmark/embeddinggemma.json
 
 .setup:
 	python -m venv .venv
