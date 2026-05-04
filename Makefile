@@ -5,7 +5,7 @@ benchmark/plot.svg: benchmark/plot.py benchmark
 	source ./.venv/bin/activate; \
 	python -m benchmark.plot
 
-benchmark: benchmark/question_only.json benchmark/random.json benchmark/bm25.json benchmark/mistral.json benchmark/openai.json benchmark/cohere.json benchmark/google.json benchmark/voyageai.json benchmark/qwen3.json benchmark/jina.json benchmark/embeddinggemma.json
+benchmark: benchmark/question_only.json benchmark/random.json benchmark/bm25.json benchmark/mistral.json benchmark/openai.json benchmark/cohere.json benchmark/google.json benchmark/voyageai.json benchmark/qwen3.json benchmark/jina.json benchmark/embeddinggemma.json benchmark/luxical.json
 
 dataset/documents: .setup
 	@if [ -d dataset/documents ]; then \
@@ -76,6 +76,11 @@ retriever/embeddinggemma/index.jsonl: dataset/documents
 	source ./.venv/bin/activate; \
 	python -m retriever.embeddinggemma.index dataset/documents >retriever/embeddinggemma/index.jsonl
 
+retriever/luxical/index.jsonl: dataset/documents
+	@echo "Building Luxical index..."
+	source ./.venv/bin/activate; \
+	python -m retriever.luxical.index dataset/documents >retriever/luxical/index.jsonl
+
 benchmark/question_only.json: dataset/qa
 	mkdir -p benchmark
 	source ./.venv/bin/activate; \
@@ -141,6 +146,12 @@ benchmark/embeddinggemma.json: retriever/embeddinggemma/index.jsonl dataset/qa
 	source ./.venv/bin/activate; \
 	python -m benchmark.embeddinggemma >benchmark/embeddinggemma.json
 	cat benchmark/embeddinggemma.json
+
+benchmark/luxical.json: retriever/luxical/index.jsonl dataset/qa
+	mkdir -p benchmark
+	source ./.venv/bin/activate; \
+	python -m benchmark.luxical >benchmark/luxical.json
+	cat benchmark/luxical.json
 
 .setup:
 	python -m venv .venv
