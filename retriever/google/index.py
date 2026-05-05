@@ -54,7 +54,7 @@ def index_doc_batch(docs_batch: list[dict[str, Any]], docs: DocumentSet) -> None
 def embedding(texts: list[str]) -> list[list[float]]:
     try:
         result = google_client.models.embed_content(
-            model="gemini-embedding-001",
+            model="gemini-embedding-2",
             contents=texts,
             config=types.EmbedContentConfig(task_type="RETRIEVAL_DOCUMENT"),
         )

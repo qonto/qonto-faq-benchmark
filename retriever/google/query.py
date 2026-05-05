@@ -48,7 +48,7 @@ def embedding(texts: list[str]) -> list[list[float]]:
     Return a list of embeddings, one for each text."""
     try:
         result = google_client.models.embed_content(
-            model="gemini-embedding-001",
+            model="gemini-embedding-2",
             contents=texts,
             config=types.EmbedContentConfig(task_type="RETRIEVAL_QUERY"),
         )
