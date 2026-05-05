@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-benchmark/plot.svg: benchmark/plot.py benchmark
+benchmark/plot.svg: benchmark/plot.py benchmark/*.json
 	@echo "Generating benchmark plot..."
 	source ./.venv/bin/activate; \
 	python -m benchmark.plot
