@@ -44,7 +44,7 @@ def index_doc_batch(docs_batch: list[dict[str, Any]], docs: DocumentSet) -> None
 def embedding(texts: list[str]) -> list[list[float]]:
     response = vo.embed(
         texts=texts,
-        model="voyage-3-large",
+        model="voyage-4-large",
         input_type="document"
     )
     return response.embeddings

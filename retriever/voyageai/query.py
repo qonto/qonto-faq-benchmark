@@ -44,7 +44,7 @@ def embedding(texts: list[str]) -> list[list[float]]:
     Return a list of embeddings, one for each text."""
     response = vo.embed(
         texts=texts,
-        model="voyage-3-large",
+        model="voyage-4-large",
         input_type="query"
     )
     return response.embeddings

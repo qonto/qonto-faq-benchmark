@@ -16,4 +16,4 @@ def relevant_documents_func() -> callable:
 
 
 if __name__ == "__main__":
-    benchmark(relevant_documents_func(), "Voyage AI 3 Large", 4)
+    benchmark(relevant_documents_func(), "Voyage AI 4 Large", 4)
