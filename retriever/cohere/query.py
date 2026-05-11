@@ -1,4 +1,3 @@
-
 # Query the index to obtain the most relevant documents for a given question.
 #
 # python retriever/<approach>/query.py --index [index.jsonl] [query] >result.json
@@ -9,6 +8,7 @@
 import os
 import sys
 import json
+import time
 import argparse
 from typing import Any
 import cohere

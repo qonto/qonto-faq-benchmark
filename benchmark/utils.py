@@ -96,16 +96,26 @@ def answer_info_with_n_docs(
 
 def load_model() -> tuple[AutoTokenizer, AutoModelForCausalLM]:
     torch_device = "cuda" if torch.cuda.is_available() else "cpu"
-    model_name = "google/gemma-3-270m-it"
+    model_name = "Qwen/Qwen3.5-2B"
     # Other models we support:
-    #model_name = "meta-llama/Llama-3.2-1B-Instruct"
+    #model_name = "LiquidAI/LFM2.5-1.2B-Instruct"
+    #model_name = "google/gemma-3-270m-it"
+    #model_name = "HuggingFaceTB/SmolLM3-3B"
     #model_name = "HuggingFaceTB/SmolLM2-1.7B-Instruct"
-    #model_name = "google/gemma-3-1b-it"
-    #model_name = "google/gemma-3-4b-it"
-    #model_name = "microsoft/Phi-4-mini-instruct"
+    #model_name = "meta-llama/Llama-3.2-1B-Instruct"
     #model_name = "mistralai/Ministral-8B-Instruct-2410"
-    tokenizer = AutoTokenizer.from_pretrained(model_name, device=torch_device)
-    model = AutoModelForCausalLM.from_pretrained(model_name, dtype=torch.bfloat16, device_map='auto')
+    #model_name = "microsoft/Phi-4-mini-instruct"
+    # Out of memory:
+    #model_name = "google/gemma-4-E2B-it"
+    # Issues loading FP8 weights:
+    #model_name = "mistralai/Ministral-3-3B-Instruct-2512"
+    if "Ministral-3" in model_name:
+        from transformers import Mistral3ForConditionalGeneration, MistralCommonBackend, FineGrainedFP8Config
+        tokenizer = MistralCommonBackend.from_pretrained(model_name)
+        model = Mistral3ForConditionalGeneration.from_pretrained(model_name, device_map='auto', quantization_config=FineGrainedFP8Config(dequantize=True))
+    else:
+        tokenizer = AutoTokenizer.from_pretrained(model_name, device=torch_device)
+        model = AutoModelForCausalLM.from_pretrained(model_name, dtype=torch.bfloat16, device_map='auto')
     model.eval()
     return tokenizer, model
 
@@ -211,12 +221,24 @@ def assistant_start_idx(tokens: list[str], model_name: str) -> int:
             # There is also a \n token to ignore after the end header.
             start_idx = i + 3
             break
-        if "SmolLM2" in model_name and tokens[i] == "<|im_start|>" and tokens[i+1] == "ass" and tokens[i+2] == "istant":
+        if "gemma-4" in model_name and tokens[i] == "<|turn>" and tokens[i+1] == "model":
+            # There is also a \n token to ignore after the end header.
+            start_idx = i + 3
+            break
+        if "SmolLM" in model_name and tokens[i] == "<|im_start|>" and tokens[i+1] == "ass" and tokens[i+2] == "istant":
             # There is also a \n token to ignore after the end header.
             start_idx = i + 4
             break
-        if model_name == "mistralai/Ministral-8B-Instruct-2410" and tokens[i] == "[/INST]":
+        if "LiquidAI" in model_name and tokens[i] == "<|im_start|>" and tokens[i+1] == "assistant":
+            # There is also a \n token to ignore after the end header.
+            start_idx = i + 3
+            break
+        if "mistral" in model_name and tokens[i] == "[/INST]":
             start_idx = i + 1
+            break
+        if "Qwen" in model_name and tokens[i] == "<|im_start|>" and tokens[i+1] == "assistant":
+            # There is also a \n token to ignore after the end header.
+            start_idx = i + 3
             break
         if model_name == "microsoft/Phi-4-mini-instruct" in model_name and tokens[i] == "<|assistant|>":
             start_idx = i + 1

@@ -12,7 +12,8 @@ import time
 from itertools import islice
 from tqdm import tqdm
 from typing import Any
-from mistralai import Mistral, models
+from mistralai.client import Mistral
+from mistralai.client.errors import SDKError
 
 from dataset.documents import DocumentSet
 
@@ -46,7 +47,7 @@ def embedding(texts: list[str]) -> list[list[float]]:
     texts = [text[:8192] for text in texts]
     try:
         resp = mistral.embeddings.create(model="mistral-embed", inputs=texts)
-    except models.sdkerror.SDKError as e:
+    except SDKError as e:
         if "Status 429" in str(e):
             print(f"Rate limited. Retrying...", file=sys.stderr)
             time.sleep(1)

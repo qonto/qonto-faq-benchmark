@@ -18,7 +18,11 @@ def create_plot():
         if filename.endswith('.json'):
             filepath = os.path.join(benchmark_dir, filename)
             with open(filepath, 'r') as f:
-                data = json.load(f)
+                try:
+                    data = json.load(f)
+                except json.JSONDecodeError as e:
+                    print(f"Error decoding JSON from {filename}: {e}")
+                    continue
                 model_name = data.get('model')
                 for measurement in data.get('measurements', []):
                     all_data.append({

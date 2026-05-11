@@ -3,7 +3,7 @@ import sys
 import json
 import random
 import tqdm
-from mistralai import Mistral
+from mistralai.client import Mistral
 from typing import Any
 
 from dataset.documents import DocumentSet

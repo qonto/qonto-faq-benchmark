@@ -58,6 +58,9 @@ def embedding(texts: list[str]) -> list[list[float]]:
     except requests.exceptions.JSONDecodeError as e:
         print(f"Error decoding JSON response: {e}\nBody: {response.text}", file=sys.stderr)
         return []
+    if not "data" in response:
+        print(f"Unexpected response format: {response}", file=sys.stderr)
+        raise ValueError("Invalid response from JINA embedding API")
     return [item['embedding'] for item in response['data']]
 
 
