@@ -96,10 +96,10 @@ def answer_info_with_n_docs(
 
 def load_model() -> tuple[AutoTokenizer, AutoModelForCausalLM]:
     torch_device = "cuda" if torch.cuda.is_available() else "cpu"
-    model_name = "Qwen/Qwen3.5-2B"
+    model_name = "google/gemma-3-270m-it"
     # Other models we support:
+    #model_name = "Qwen/Qwen3.5-2B"
     #model_name = "LiquidAI/LFM2.5-1.2B-Instruct"
-    #model_name = "google/gemma-3-270m-it"
     #model_name = "HuggingFaceTB/SmolLM3-3B"
     #model_name = "HuggingFaceTB/SmolLM2-1.7B-Instruct"
     #model_name = "meta-llama/Llama-3.2-1B-Instruct"
@@ -211,37 +211,48 @@ def assistant_response(tokens: list[str], logprobs: list[float], model_name: str
 
 def assistant_start_idx(tokens: list[str], model_name: str) -> int:
     """Returns the index of the first token of the assistant's response."""
+    # Determine the chat tokenization format.
+    if "mistral" in model_name and tokens[i] == "[/INST]":
+        chat_format = "mistral"
+    if "Llama-3" in model_name:
+        chat_format = "llama3"
+    if "gemma-3" in model_name:
+        chat_format = "gemma3"
+    if "gemma-4" in model_name:
+        chat_format = "gemma4"
+    if "SmolLM2" in model_name:
+        chat_format = "smollm2"
+    if "SmolLM3" in model_name or "LiquidAI" in model_name or "Qwen" in model_name:
+        chat_format = "chatml"
+    if model_name == "microsoft/Phi-4-mini-instruct":
+        chat_format = "phi4"
     # Find the start of the assistant's response.
     for i in range(len(tokens)):
-        if model_name == "meta-llama/Llama-3.2-1B-Instruct" and tokens[i] == "assistant" and tokens[i+1] == "<|end_header_id|>":
+        if "mistral" == chat_format and tokens[i] == "[/INST]":
+            start_idx = i + 1
+            break
+        if "llama3" == chat_format and tokens[i] == "assistant" and tokens[i+1] == "<|end_header_id|>":
             # There is also a \n\n token to ignore after the end header.
             start_idx = i + 3
             break
-        if "gemma-3" in model_name and tokens[i] == "<start_of_turn>" and tokens[i+1] == "model":
+        if "gemma3" == chat_format and tokens[i] == "<start_of_turn>" and tokens[i+1] == "model":
             # There is also a \n token to ignore after the end header.
             start_idx = i + 3
             break
-        if "gemma-4" in model_name and tokens[i] == "<|turn>" and tokens[i+1] == "model":
+        if "gemma4" == chat_format and tokens[i] == "<|turn>" and tokens[i+1] == "model":
             # There is also a \n token to ignore after the end header.
             start_idx = i + 3
             break
-        if "SmolLM" in model_name and tokens[i] == "<|im_start|>" and tokens[i+1] == "ass" and tokens[i+2] == "istant":
+        if "smollm2" == chat_format and tokens[i] == "<|im_start|>" and tokens[i+1] == "ass" and tokens[i+2] == "istant":
             # There is also a \n token to ignore after the end header.
             start_idx = i + 4
             break
-        if "LiquidAI" in model_name and tokens[i] == "<|im_start|>" and tokens[i+1] == "assistant":
-            # There is also a \n token to ignore after the end header.
-            start_idx = i + 3
-            break
-        if "mistral" in model_name and tokens[i] == "[/INST]":
+        if "phi4" == chat_format and tokens[i] == "<|assistant|>":
             start_idx = i + 1
             break
-        if "Qwen" in model_name and tokens[i] == "<|im_start|>" and tokens[i+1] == "assistant":
+        if "chatml" == chat_format and tokens[i] == "<|im_start|>" and tokens[i+1] == "assistant":
             # There is also a \n token to ignore after the end header.
             start_idx = i + 3
-            break
-        if model_name == "microsoft/Phi-4-mini-instruct" in model_name and tokens[i] == "<|assistant|>":
-            start_idx = i + 1
             break
     return start_idx
 
