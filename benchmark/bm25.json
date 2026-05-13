@@ -3,19 +3,19 @@
     "measurements": [
         {
             "top_k": 1,
-            "information_assimilation": 0.2575274682928874
+            "information_assimilation": 0.2699441334480944
         },
         {
             "top_k": 2,
-            "information_assimilation": 0.2853380280526556
+            "information_assimilation": 0.3017237597961755
         },
         {
             "top_k": 3,
-            "information_assimilation": 0.29897342817747297
+            "information_assimilation": 0.3184920951169409
         },
         {
             "top_k": 4,
-            "information_assimilation": 0.30245988024111536
+            "information_assimilation": 0.3262488265470037
         }
     ]
 }
