@@ -96,9 +96,9 @@ def answer_info_with_n_docs(
 
 def load_model() -> tuple[AutoTokenizer, AutoModelForCausalLM]:
     torch_device = "cuda" if torch.cuda.is_available() else "cpu"
-    model_name = "LiquidAI/LFM2.5-1.2B-Instruct"
-    # Other models we support:
     model_name = "Qwen/Qwen3.5-2B"
+    # Other models we support:
+    #model_name = "LiquidAI/LFM2.5-1.2B-Instruct"
     #model_name = "HuggingFaceTB/SmolLM3-3B"
     #model_name = "google/gemma-3-270m-it"
     #model_name = "HuggingFaceTB/SmolLM2-1.7B-Instruct"
