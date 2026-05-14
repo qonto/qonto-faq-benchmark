@@ -1,4 +1,3 @@
-/.setup
 /.venv/
 /retriever/*/index.jsonl
 /retriever/bm25/index/
