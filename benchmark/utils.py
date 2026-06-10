@@ -44,19 +44,16 @@ def benchmark(relevant_documents: Callable[str, list[str]], model_name: str, max
     tokenizer, model = load_model()
 
     # Pre-compute docless values.
-    n_bits_docless, n_bytes = answer_info_with_n_docs(
+    compression_ratio_docless = answer_info_with_n_docs(
         validation_set, relevant_docs, 0, tokenizer, model
     )
-
-    compression_ratio_docless = n_bits_docless / (n_bytes * 8)
 
     measurements = []
     for i in range(max_docs):
         n_docs = i + 1
-        n_bits, n_bytes = answer_info_with_n_docs(
+        compression_ratio = answer_info_with_n_docs(
             validation_set, relevant_docs, n_docs, tokenizer, model
         )
-        compression_ratio = n_bits / (n_bytes * 8)
         score = 1 - (compression_ratio / compression_ratio_docless)
         measurements.append({"top_k": n_docs, "information_assimilation": score})
 
@@ -72,11 +69,11 @@ def answer_info_with_n_docs(
     model: AutoModelForCausalLM,
 ) -> tuple[float, int]:
     """
-    Computes the sum of bits and bytes for the answers in the validation set,
+    Computes the ratio of the LLM bits over UTF-8 bits for the answers in the validation set,
     given n_docs relevant documents.
     """
-    n_bits = 0
-    n_bytes = 0
+    llm_bits = 0
+    raw_bytes = 0
     desc = (
         "Estimating baseline (doc-less) compression ratio"
         if n_docs == 0
@@ -86,12 +83,11 @@ def answer_info_with_n_docs(
         query = data["query"]
         answer = data["answer"]
         docs = relevant_docs[query][:n_docs]
-        tokens, logprobs = transformers_answer_probs(docs, query, answer, tokenizer, model)
-        qa_n_bits, qa_n_bytes = answer_compression(tokens, logprobs)
-        n_bits += qa_n_bits
-        n_bytes += qa_n_bytes
+        logprobs = transformers_answer_probs(docs, query, answer, tokenizer, model)
+        llm_bits += -sum(logprobs)
+        raw_bytes += len(answer.encode("utf-8"))
         torch.cuda.empty_cache()
-    return n_bits, n_bytes
+    return llm_bits / (raw_bytes * 8)
 
 
 def load_model() -> tuple[AutoTokenizer, AutoModelForCausalLM]:
@@ -121,8 +117,8 @@ def load_model() -> tuple[AutoTokenizer, AutoModelForCausalLM]:
 
 
 # On 100 iterations, it takes ~12 seconds with CUDA.
-def transformers_answer_probs(docs: list[str], question: str, answer: str, tokenizer: AutoTokenizer, model: AutoModelForCausalLM) -> tuple[list[str], list[float]]:
-    """Returns (tokens, logprobs) for each token in the answer."""
+def transformers_answer_probs(docs: list[str], question: str, answer: str, tokenizer: AutoTokenizer, model: AutoModelForCausalLM) -> list[float]:
+    """Returns the logprobs for each token in the answer."""
     with torch.inference_mode():
         pt_tokens = tokenizer.apply_chat_template([
             # Warning: Ministral does not have system prompts, and will silently discard them.
@@ -151,7 +147,7 @@ def transformers_answer_probs(docs: list[str], question: str, answer: str, token
             for i in range(len(prob_batch[0]))]
         assert len(answer_tokens) == len(answer_logprobs), \
             f"Answer tokens ({len(answer_tokens)}) and logprobs ({len(answer_logprobs)}) mismatch."
-        return answer_tokens, answer_logprobs
+        return answer_logprobs
 
 
 # On 100 iterations, it takes from 3 minutes to 114 minutes.
@@ -255,12 +251,6 @@ def assistant_start_idx(tokens: list[str], model_name: str) -> int:
             start_idx = i + 3
             break
     return start_idx
-
-
-def answer_compression(tokens: list[str], logprobs: list[float]) -> tuple[float, int]:
-    """Returns (information content in bits, number of bytes)"""
-    n_bytes = sum([len(token.encode("utf-8")) for token in tokens])
-    return -sum(logprobs), n_bytes
 
 
 def log2(value: float) -> float:
